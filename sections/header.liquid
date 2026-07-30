@@ -1,40 +1,35 @@
 {%- assign menu = linklists[section.settings.menu] | default: linklists.main-menu -%}
-<header data-header class="sticky top-0 z-50 bg-navy text-white transition-all duration-300">
+<header data-header class="sticky top-0 z-50 bg-black text-white transition-all duration-300">
   <div class="container-lux">
-    <div class="flex h-[72px] items-center justify-between gap-6">
-
-      {% comment %} Mobile: hamburger {% endcomment %}
-      <button type="button" class="lg:hidden" data-drawer-open="MobileMenu" aria-label="Open menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
+    <div class="flex h-[80px] items-center justify-between gap-8">
 
       {% comment %} Logo {% endcomment %}
-      <a href="{{ routes.root_url }}" class="flex items-center gap-2 lg:order-first">
+      <a href="{{ routes.root_url }}" class="flex items-center gap-2.5">
         {%- if settings.logo -%}
           <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" width="{{ settings.logo_width }}" style="width:{{ settings.logo_width }}px" class="h-auto">
         {%- else -%}
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.4"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3 6 9l6 12M15 3l3 6-6 12"/></svg>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.4"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18M9 3 6 9l6 12M15 3l3 6-6 12"/></svg>
           <span class="leading-none">
-            <span class="block font-display text-xl tracking-[.18em]">LUXORA</span>
-            <span class="block text-[9px] tracking-[.55em] text-gold">JEWELRY</span>
+            <span class="block font-display text-xl tracking-[.24em]">LUXORA</span>
+            <span class="block text-[9px] tracking-[.6em] text-gold">JEWELRY</span>
           </span>
         {%- endif -%}
       </a>
 
-      {% comment %} Desktop nav {% endcomment %}
-      <nav class="hidden lg:flex flex-1 items-center justify-center gap-8" aria-label="Main">
+      {% comment %} Desktop Navigation - Center {% endcomment %}
+      <nav class="hidden flex-1 items-center justify-center gap-9 lg:flex" aria-label="Main">
         {%- for link in menu.links -%}
           <div class="group relative">
-            <a href="{{ link.url }}" class="flex items-center gap-1 py-6 text-[12px] font-medium uppercase tracking-[.18em] transition-colors hover:text-gold {% if link.active %}text-gold{% endif %}">
+            <a href="{{ link.url }}" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold {% if link.active %}text-gold{% endif %}">
               {{ link.title }}
               {%- if link.links.size > 0 -%}
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
               {%- endif -%}
             </a>
             {%- if link.links.size > 0 -%}
-              <div class="invisible absolute left-0 top-full z-50 w-56 translate-y-2 border border-gold/20 bg-navy p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+              <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
                 {%- for child in link.links -%}
-                  <a href="{{ child.url }}" class="block px-3 py-2 text-sm transition hover:bg-white/5 hover:text-gold">{{ child.title }}</a>
+                  <a href="{{ child.url }}" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold {% if child.active %}text-gold{% endif %}">{{ child.title }}</a>
                 {%- endfor -%}
               </div>
             {%- endif -%}
@@ -42,20 +37,33 @@
         {%- endfor -%}
       </nav>
 
-      {% comment %} Actions {% endcomment %}
-      <div class="flex items-center gap-4">
+      {% comment %} Actions - Right Side {% endcomment %}
+      <div class="flex items-center gap-5">
+        {% comment %} Mobile hamburger {% endcomment %}
+        <button type="button" class="lg:hidden" data-drawer-open="MobileMenu" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+
+        {% comment %} Search {% endcomment %}
         <button type="button" data-drawer-open="SearchDrawer" aria-label="Search" class="transition hover:text-gold">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
         </button>
-        <a href="{{ routes.account_url }}" aria-label="Account" class="hidden sm:block transition hover:text-gold">
+
+        {% comment %} Account {% endcomment %}
+        <a href="{{ routes.account_url }}" aria-label="Account" class="hidden transition hover:text-gold sm:block">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
         </a>
-        <a href="/pages/wishlist" aria-label="Wishlist" class="hidden sm:block transition hover:text-gold">
+
+        {% comment %} Wishlist with badge {% endcomment %}
+        <a href="/pages/wishlist" aria-label="Wishlist" class="relative hidden transition hover:text-gold sm:block">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <span class="absolute -right-1.5 -top-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-[10px] font-semibold text-black">0</span>
         </a>
+
+        {% comment %} Cart with count {% endcomment %}
         <button type="button" data-drawer-open="CartDrawer" aria-label="Open cart" class="relative transition hover:text-gold">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12l1.5 13H4.5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
-          <span data-cart-count class="absolute -right-2 -top-2 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-[10px] font-semibold text-white {% if cart.item_count == 0 %}hidden{% endif %}">{{ cart.item_count }}</span>
+          <span data-cart-count class="absolute -right-1.5 -top-1.5 grid h-4 min-w-4 place-items-center rounded-full bg-gold px-1 text-[10px] font-semibold text-black {% if cart.item_count == 0 %}hidden{% endif %}">{{ cart.item_count }}</span>
         </button>
       </div>
     </div>
@@ -65,7 +73,7 @@
 {% comment %} Mobile menu drawer {% endcomment %}
 <div id="MobileMenu" class="drawer lg:hidden" aria-hidden="true">
   <div class="drawer__overlay"></div>
-  <aside class="drawer__panel drawer__panel--left">
+  <aside class="drawer__panel drawer__panel--left" style="background: #000;">
     <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
       <span class="font-display text-lg tracking-[.2em]">MENU</span>
       <button type="button" data-drawer-close aria-label="Close menu" class="text-2xl leading-none">&times;</button>
@@ -74,7 +82,7 @@
       {%- for link in menu.links -%}
         <div class="border-b border-white/5 py-1">
           <div class="flex items-center justify-between">
-            <a href="{{ link.url }}" class="block py-3 text-sm uppercase tracking-[.16em]">{{ link.title }}</a>
+            <a href="{{ link.url }}" class="block py-3 text-sm uppercase tracking-[.16em] {% if link.active %}text-gold{% endif %}">{{ link.title }}</a>
             {%- if link.links.size > 0 -%}
               <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
             {%- endif -%}
@@ -82,7 +90,7 @@
           {%- if link.links.size > 0 -%}
             <div data-submenu class="hidden pb-3 pl-3">
               {%- for child in link.links -%}
-                <a href="{{ child.url }}" class="block py-2 text-sm text-white/70 hover:text-gold">{{ child.title }}</a>
+                <a href="{{ child.url }}" class="block py-2 text-sm text-white/70 hover:text-gold {% if child.active %}text-gold{% endif %}">{{ child.title }}</a>
               {%- endfor -%}
             </div>
           {%- endif -%}
