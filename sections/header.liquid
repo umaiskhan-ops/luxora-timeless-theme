@@ -1,4 +1,8 @@
 {%- assign menu = linklists[section.settings.menu] | default: linklists.main-menu -%}
+{%- if menu.links.size == 0 -%}
+  {%- comment %} Default menu structure when no menu is configured {% endcomment -%}
+  {%- assign default_menu = true -%}
+{%- endif -%}
 <header data-header class="sticky top-0 z-50 bg-black text-white transition-all duration-300">
   <div class="container-lux">
     <div class="flex h-[80px] items-center justify-between gap-8">
@@ -18,23 +22,83 @@
 
       {% comment %} Desktop Navigation - Center {% endcomment %}
       <nav class="hidden flex-1 items-center justify-center gap-9 lg:flex" aria-label="Main">
-        {%- for link in menu.links -%}
+        {%- if default_menu -%}
+          {% comment %} Default Menu Structure {% endcomment %}
           <div class="group relative">
-            <a href="{{ link.url }}" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold {% if link.active %}text-gold{% endif %}">
-              {{ link.title }}
-              {%- if link.links.size > 0 -%}
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-              {%- endif -%}
-            </a>
-            {%- if link.links.size > 0 -%}
-              <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
-                {%- for child in link.links -%}
-                  <a href="{{ child.url }}" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold {% if child.active %}text-gold{% endif %}">{{ child.title }}</a>
-                {%- endfor -%}
-              </div>
-            {%- endif -%}
+            <a href="/" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">HOME</a>
           </div>
-        {%- endfor -%}
+          <div class="group relative">
+            <a href="/collections/all" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">
+              SHOP
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
+              <a href="/collections/all" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">All Products</a>
+              <a href="/collections/best-sellers" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Best Sellers</a>
+              <a href="/collections/new-arrivals" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">New Arrivals</a>
+              <a href="/collections/sale" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Sale</a>
+            </div>
+          </div>
+          <div class="group relative">
+            <a href="/collections" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">
+              COLLECTIONS
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
+              <a href="/collections/rings" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Rings</a>
+              <a href="/collections/necklaces" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Necklaces</a>
+              <a href="/collections/bracelets" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Bracelets</a>
+              <a href="/collections/earrings" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Earrings</a>
+              <a href="/collections/watches" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Watches</a>
+            </div>
+          </div>
+          <div class="group relative">
+            <a href="/collections/new-arrivals" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">NEW ARRIVALS</a>
+          </div>
+          <div class="group relative">
+            <a href="/pages/about" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">
+              ABOUT US
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
+              <a href="/pages/about" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Our Story</a>
+              <a href="/pages/craftsmanship" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Craftsmanship</a>
+              <a href="/pages/contact" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Contact Us</a>
+            </div>
+          </div>
+          <div class="group relative">
+            <a href="#" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">
+              PAGES
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
+              <a href="/pages/faq" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">FAQ</a>
+              <a href="/pages/shipping" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Shipping & Returns</a>
+              <a href="/pages/privacy" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Privacy Policy</a>
+              <a href="/pages/terms" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Terms of Service</a>
+              <a href="/pages/refund" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Refund Policy</a>
+            </div>
+          </div>
+        {%- else -%}
+          {% comment %} Custom Menu from Shopify Admin {% endcomment %}
+          {%- for link in menu.links -%}
+            <div class="group relative">
+              <a href="{{ link.url }}" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold {% if link.active %}text-gold{% endif %}">
+                {{ link.title }}
+                {%- if link.links.size > 0 -%}
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+                {%- endif -%}
+              </a>
+              {%- if link.links.size > 0 -%}
+                <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
+                  {%- for child in link.links -%}
+                    <a href="{{ child.url }}" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold {% if child.active %}text-gold{% endif %}">{{ child.title }}</a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
       </nav>
 
       {% comment %} Actions - Right Side {% endcomment %}
@@ -79,23 +143,83 @@
       <button type="button" data-drawer-close aria-label="Close menu" class="text-2xl leading-none">&times;</button>
     </div>
     <nav class="flex-1 overflow-y-auto px-5 py-4">
-      {%- for link in menu.links -%}
+      {%- if default_menu -%}
+        {% comment %} Default Mobile Menu {% endcomment %}
+        <div class="border-b border-white/5 py-1">
+          <a href="/" class="block py-3 text-sm uppercase tracking-[.16em]">HOME</a>
+        </div>
         <div class="border-b border-white/5 py-1">
           <div class="flex items-center justify-between">
-            <a href="{{ link.url }}" class="block py-3 text-sm uppercase tracking-[.16em] {% if link.active %}text-gold{% endif %}">{{ link.title }}</a>
+            <a href="/collections/all" class="block py-3 text-sm uppercase tracking-[.16em]">SHOP</a>
+            <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
+          </div>
+          <div data-submenu class="hidden pb-3 pl-3">
+            <a href="/collections/all" class="block py-2 text-sm text-white/70 hover:text-gold">All Products</a>
+            <a href="/collections/best-sellers" class="block py-2 text-sm text-white/70 hover:text-gold">Best Sellers</a>
+            <a href="/collections/new-arrivals" class="block py-2 text-sm text-white/70 hover:text-gold">New Arrivals</a>
+            <a href="/collections/sale" class="block py-2 text-sm text-white/70 hover:text-gold">Sale</a>
+          </div>
+        </div>
+        <div class="border-b border-white/5 py-1">
+          <div class="flex items-center justify-between">
+            <a href="/collections" class="block py-3 text-sm uppercase tracking-[.16em]">COLLECTIONS</a>
+            <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
+          </div>
+          <div data-submenu class="hidden pb-3 pl-3">
+            <a href="/collections/rings" class="block py-2 text-sm text-white/70 hover:text-gold">Rings</a>
+            <a href="/collections/necklaces" class="block py-2 text-sm text-white/70 hover:text-gold">Necklaces</a>
+            <a href="/collections/bracelets" class="block py-2 text-sm text-white/70 hover:text-gold">Bracelets</a>
+            <a href="/collections/earrings" class="block py-2 text-sm text-white/70 hover:text-gold">Earrings</a>
+            <a href="/collections/watches" class="block py-2 text-sm text-white/70 hover:text-gold">Watches</a>
+          </div>
+        </div>
+        <div class="border-b border-white/5 py-1">
+          <a href="/collections/new-arrivals" class="block py-3 text-sm uppercase tracking-[.16em]">NEW ARRIVALS</a>
+        </div>
+        <div class="border-b border-white/5 py-1">
+          <div class="flex items-center justify-between">
+            <a href="/pages/about" class="block py-3 text-sm uppercase tracking-[.16em]">ABOUT US</a>
+            <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
+          </div>
+          <div data-submenu class="hidden pb-3 pl-3">
+            <a href="/pages/about" class="block py-2 text-sm text-white/70 hover:text-gold">Our Story</a>
+            <a href="/pages/craftsmanship" class="block py-2 text-sm text-white/70 hover:text-gold">Craftsmanship</a>
+            <a href="/pages/contact" class="block py-2 text-sm text-white/70 hover:text-gold">Contact Us</a>
+          </div>
+        </div>
+        <div class="border-b border-white/5 py-1">
+          <div class="flex items-center justify-between">
+            <span class="block py-3 text-sm uppercase tracking-[.16em]">PAGES</span>
+            <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
+          </div>
+          <div data-submenu class="hidden pb-3 pl-3">
+            <a href="/pages/faq" class="block py-2 text-sm text-white/70 hover:text-gold">FAQ</a>
+            <a href="/pages/shipping" class="block py-2 text-sm text-white/70 hover:text-gold">Shipping & Returns</a>
+            <a href="/pages/privacy" class="block py-2 text-sm text-white/70 hover:text-gold">Privacy Policy</a>
+            <a href="/pages/terms" class="block py-2 text-sm text-white/70 hover:text-gold">Terms of Service</a>
+            <a href="/pages/refund" class="block py-2 text-sm text-white/70 hover:text-gold">Refund Policy</a>
+          </div>
+        </div>
+      {%- else -%}
+        {% comment %} Custom Mobile Menu {% endcomment %}
+        {%- for link in menu.links -%}
+          <div class="border-b border-white/5 py-1">
+            <div class="flex items-center justify-between">
+              <a href="{{ link.url }}" class="block py-3 text-sm uppercase tracking-[.16em] {% if link.active %}text-gold{% endif %}">{{ link.title }}</a>
+              {%- if link.links.size > 0 -%}
+                <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
+              {%- endif -%}
+            </div>
             {%- if link.links.size > 0 -%}
-              <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
+              <div data-submenu class="hidden pb-3 pl-3">
+                {%- for child in link.links -%}
+                  <a href="{{ child.url }}" class="block py-2 text-sm text-white/70 hover:text-gold {% if child.active %}text-gold{% endif %}">{{ child.title }}</a>
+                {%- endfor -%}
+              </div>
             {%- endif -%}
           </div>
-          {%- if link.links.size > 0 -%}
-            <div data-submenu class="hidden pb-3 pl-3">
-              {%- for child in link.links -%}
-                <a href="{{ child.url }}" class="block py-2 text-sm text-white/70 hover:text-gold {% if child.active %}text-gold{% endif %}">{{ child.title }}</a>
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- endfor -%}
+        {%- endfor -%}
+      {%- endif -%}
     </nav>
     <div class="border-t border-white/10 p-5">
       <a href="{{ routes.account_url }}" class="btn btn-gold w-full">{% if customer %}{{ customer.name }}{% else %}Account{% endif %}</a>
