@@ -23,7 +23,7 @@
       {% comment %} Desktop Navigation - Center {% endcomment %}
       <nav class="hidden flex-1 items-center justify-center gap-9 lg:flex" aria-label="Main">
         {%- if default_menu -%}
-          {% comment %} Default Menu Structure {% endcomment %}
+          {% comment %} Default Menu Structure - Only 3 dropdowns: SHOP, COLLECTIONS, PAGES {% endcomment %}
           <div class="group relative">
             <a href="/" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">HOME</a>
           </div>
@@ -56,15 +56,7 @@
             <a href="/collections/new-arrivals" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">NEW ARRIVALS</a>
           </div>
           <div class="group relative">
-            <a href="/pages/about" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">
-              ABOUT US
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-            </a>
-            <div class="invisible absolute left-0 top-full z-50 mt-2 w-56 border border-gold/20 bg-black p-3 opacity-0 shadow-2xl transition-all duration-300 group-hover:visible group-hover:mt-0 group-hover:opacity-100">
-              <a href="/pages/about" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Our Story</a>
-              <a href="/pages/craftsmanship" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Craftsmanship</a>
-              <a href="/pages/contact" class="block px-3 py-2.5 text-sm transition hover:bg-white/5 hover:text-gold">Contact Us</a>
-            </div>
+            <a href="/pages/about" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">ABOUT US</a>
           </div>
           <div class="group relative">
             <a href="#" class="flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[.2em] transition-colors hover:text-gold">
@@ -144,7 +136,7 @@
     </div>
     <nav class="flex-1 overflow-y-auto px-5 py-4">
       {%- if default_menu -%}
-        {% comment %} Default Mobile Menu {% endcomment %}
+        {% comment %} Default Mobile Menu - Only 3 dropdowns {% endcomment %}
         <div class="border-b border-white/5 py-1">
           <a href="/" class="block py-3 text-sm uppercase tracking-[.16em]">HOME</a>
         </div>
@@ -177,15 +169,7 @@
           <a href="/collections/new-arrivals" class="block py-3 text-sm uppercase tracking-[.16em]">NEW ARRIVALS</a>
         </div>
         <div class="border-b border-white/5 py-1">
-          <div class="flex items-center justify-between">
-            <a href="/pages/about" class="block py-3 text-sm uppercase tracking-[.16em]">ABOUT US</a>
-            <button type="button" data-submenu-toggle aria-label="Expand" class="p-2">+</button>
-          </div>
-          <div data-submenu class="hidden pb-3 pl-3">
-            <a href="/pages/about" class="block py-2 text-sm text-white/70 hover:text-gold">Our Story</a>
-            <a href="/pages/craftsmanship" class="block py-2 text-sm text-white/70 hover:text-gold">Craftsmanship</a>
-            <a href="/pages/contact" class="block py-2 text-sm text-white/70 hover:text-gold">Contact Us</a>
-          </div>
+          <a href="/pages/about" class="block py-3 text-sm uppercase tracking-[.16em]">ABOUT US</a>
         </div>
         <div class="border-b border-white/5 py-1">
           <div class="flex items-center justify-between">
