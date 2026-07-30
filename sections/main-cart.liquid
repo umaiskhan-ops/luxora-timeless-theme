@@ -1,0 +1,46 @@
+<section class="py-14">
+  <div class="container-lux">
+    <header class="text-center">
+      <p class="eyebrow">Shopping Bag</p>
+      <h1 class="section-title mt-2">Your Cart</h1>
+    </header>
+
+    {%- if cart.item_count > 0 -%}
+      <form action="{{ routes.cart_url }}" method="post" class="mt-10 grid gap-10 lg:grid-cols-[1fr_380px]">
+        <div>
+          {%- for item in cart.items -%}
+            {% render 'cart-item', item: item, index: forloop.index %}
+          {%- endfor -%}
+          <a href="/collections/all" class="mt-6 inline-block text-[11px] uppercase tracking-[.2em] text-ink/50 underline hover:text-gold">Continue shopping</a>
+        </div>
+
+        <aside class="h-fit border border-black/10 p-6 lg:sticky lg:top-24">
+          <h2 class="font-display text-xl">Order Summary</h2>
+
+          <div class="mt-5" data-shipping-progress>
+            <p class="text-xs text-ink/70" data-shipping-text></p>
+            <div class="progress mt-2"><div class="progress__bar" data-shipping-bar></div></div>
+          </div>
+
+          <div class="mt-6 space-y-3 border-t border-black/10 pt-5 text-sm">
+            <div class="flex justify-between"><span class="text-ink/60">Subtotal</span><span data-cart-total>{{ cart.total_price | money }}</span></div>
+            <div class="flex justify-between"><span class="text-ink/60">Shipping</span><span>Calculated at checkout</span></div>
+          </div>
+
+          <label class="mt-5 block text-xs uppercase tracking-[.18em] text-ink/60" for="CartNote">Order note</label>
+          <textarea id="CartNote" name="note" rows="3" class="mt-2 w-full border border-black/15 p-3 text-sm outline-none focus:border-gold">{{ cart.note }}</textarea>
+
+          <button type="submit" name="checkout" class="btn btn-gold mt-5 w-full">Proceed to Checkout</button>
+          <p class="mt-3 text-center text-[11px] text-ink/45">Taxes and discounts calculated at checkout.</p>
+        </aside>
+      </form>
+    {%- else -%}
+      <div class="py-20 text-center">
+        <p class="font-display text-2xl">Your cart is empty</p>
+        <p class="mt-2 text-sm text-ink/55">Explore our exquisite collections and find your forever piece.</p>
+        <a href="/collections/all" class="btn btn-gold mt-7">Shop Collection</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}{ "name": "Cart" }{% endschema %}

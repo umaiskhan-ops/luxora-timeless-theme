@@ -1,0 +1,19 @@
+{
+  "current": {
+    "color_primary": "#1a1a2e",
+    "color_secondary": "#d4af37",
+    "color_accent": "#f8f9fa",
+    "color_text": "#333333",
+    "font_pair": "playfair_inter",
+    "heading_scale": 100,
+    "logo_width": 150,
+    "brand_tagline": "Beauty That Lasts Forever",
+    "free_shipping_threshold": 199,
+    "enable_cart_drawer": true,
+    "enable_cart_upsell": true,
+    "currency_code_enabled": false,
+    "swatch_option_name": "Color",
+    "swatch_map": "Gold:#d4af37\nRose Gold:#b76e79\nWhite Gold:#e8e8e8\nPlatinum:#dcdcdc\nSilver:#c0c0c0"
+  },
+  "presets": {}
+}

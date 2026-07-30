@@ -1,0 +1,37 @@
+<section class="py-14">
+  <div class="container-lux max-w-3xl">
+    <header class="text-center">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="section-title mt-2">{{ section.settings.heading }}</h1>
+    </header>
+    <div class="mt-10 divide-y divide-black/10 border-y border-black/10">
+      {%- for block in section.blocks -%}
+        <div class="faq-item" {{ block.shopify_attributes }}>
+          <button type="button" data-faq-toggle aria-expanded="false" class="flex w-full items-center justify-between gap-4 py-5 text-left">
+            <span class="font-display text-lg">{{ block.settings.question }}</span>
+            <span class="faq-item__icon shrink-0 text-2xl leading-none text-gold">+</span>
+          </button>
+          <div class="faq-item__panel"><div class="pb-5 text-sm leading-relaxed text-ink/70">{{ block.settings.answer }}</div></div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Help Centre" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "FREQUENTLY ASKED QUESTIONS" }
+  ],
+  "blocks": [
+    { "type": "faq", "name": "Question", "settings": [
+      { "type": "text", "id": "question", "label": "Question", "default": "Is your jewelry certified?" },
+      { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Every diamond above 0.30ct ships with an independent certificate.</p>" }
+    ]}
+  ],
+  "presets": [{ "name": "FAQ", "blocks": [
+    { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }, { "type": "faq" }
+  ]}]
+}
+{% endschema %}

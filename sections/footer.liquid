@@ -1,0 +1,77 @@
+<footer class="bg-navy pt-16 text-white">
+  <div class="container-lux grid gap-10 pb-12 md:grid-cols-2 lg:grid-cols-6">
+
+    <div class="lg:col-span-2">
+      <a href="{{ routes.root_url }}" class="flex items-center gap-2">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.4"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/></svg>
+        <span class="leading-none">
+          <span class="block font-display text-xl tracking-[.18em]">LUXORA</span>
+          <span class="block text-[9px] tracking-[.55em] text-gold">JEWELRY</span>
+        </span>
+      </a>
+      <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/55">{{ section.settings.brand_text }}</p>
+      <div class="mt-6">{% render 'social-icons' %}</div>
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- assign fmenu = linklists[block.settings.menu] -%}
+      <div {{ block.shopify_attributes }}>
+        <h3 class="text-xs font-semibold uppercase tracking-[.2em] text-gold">{{ block.settings.title }}</h3>
+        <ul class="mt-4 space-y-2.5">
+          {%- for link in fmenu.links -%}
+            <li><a href="{{ link.url }}" class="text-sm text-white/60 transition hover:text-gold">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endfor -%}
+
+    <div>
+      <h3 class="text-xs font-semibold uppercase tracking-[.2em] text-gold">Newsletter</h3>
+      <p class="mt-4 text-sm text-white/55">Be first to know about new drops.</p>
+      {% form 'customer', class: 'mt-4' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" required placeholder="Email address" aria-label="Email"
+               class="w-full border border-white/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-gold">
+        <button type="submit" class="btn btn-gold mt-3 w-full">Subscribe</button>
+        {%- if form.posted_successfully? -%}<p class="mt-2 text-xs text-gold">Thank you for subscribing.</p>{%- endif -%}
+      {% endform %}
+      <p class="mt-6 text-xs uppercase tracking-[.18em] text-white/40">We accept</p>
+      <div class="mt-2 flex flex-wrap gap-1.5">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'h-6 w-auto bg-white rounded-sm' }}
+        {%- else -%}
+          <span class="rounded bg-white px-2 py-1 text-[10px] font-semibold text-navy">VISA</span>
+          <span class="rounded bg-white px-2 py-1 text-[10px] font-semibold text-navy">MASTERCARD</span>
+          <span class="rounded bg-white px-2 py-1 text-[10px] font-semibold text-navy">PAYPAL</span>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="container-lux flex flex-col items-center justify-between gap-3 py-5 md:flex-row">
+      <p class="text-xs text-white/45">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+      <ul class="flex flex-wrap gap-5">
+        {%- if shop.privacy_policy -%}<li><a href="{{ shop.privacy_policy.url }}" class="text-xs text-white/45 hover:text-gold">Privacy Policy</a></li>{%- endif -%}
+        {%- if shop.terms_of_service -%}<li><a href="{{ shop.terms_of_service.url }}" class="text-xs text-white/45 hover:text-gold">Terms &amp; Conditions</a></li>{%- endif -%}
+        {%- if shop.refund_policy -%}<li><a href="{{ shop.refund_policy.url }}" class="text-xs text-white/45 hover:text-gold">Refund Policy</a></li>{%- endif -%}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "textarea", "id": "brand_text", "label": "Brand story", "default": "Luxury that shines, beauty that lasts. Crafted for unforgettable moments." }
+  ],
+  "blocks": [
+    { "type": "menu", "name": "Menu column", "limit": 3, "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "Shop" },
+      { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
+    ]}
+  ],
+  "presets": [{ "name": "Footer", "blocks": [{ "type": "menu" }, { "type": "menu" }, { "type": "menu" }] }]
+}
+{% endschema %}

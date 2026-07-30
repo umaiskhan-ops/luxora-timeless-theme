@@ -1,0 +1,66 @@
+{% comment %}
+  Reusable product card.
+  Usage: {% render 'product-card', product: product, badge: 'New' %}
+{% endcomment %}
+{%- liquid
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+  endif
+-%}
+<div class="product-card group reveal">
+  <a href="{{ product.url }}" class="product-card__media block" aria-label="{{ product.title | escape }}">
+    {%- if product.featured_image -%}
+      <img class="primary" loading="lazy" width="600" height="600"
+           src="{{ product.featured_image | image_url: width: 700 }}"
+           alt="{{ product.featured_image.alt | default: product.title | escape }}">
+      {%- if product.images[1] -%}
+        <img class="secondary" loading="lazy" width="600" height="600"
+             src="{{ product.images[1] | image_url: width: 700 }}"
+             alt="{{ product.title | escape }}">
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover' }}
+    {%- endif -%}
+
+    {%- if badge != blank -%}
+      <span class="product-card__badge">{{ badge }}</span>
+    {%- elsif on_sale -%}
+      <span class="product-card__badge">Sale</span>
+    {%- elsif product.available == false -%}
+      <span class="product-card__badge">Sold out</span>
+    {%- endif -%}
+
+    <button type="button" class="absolute right-3 top-3 grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white/80 backdrop-blur transition hover:bg-gold hover:text-white" aria-label="Add to wishlist">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1L12 21.2l7.7-7.8 1.1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+    </button>
+  </a>
+
+  <div class="product-card__quick p-3">
+    <button type="button"
+            class="btn btn-gold w-full"
+            data-add-to-cart
+            data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+            data-quantity="1"
+            {% unless product.available %}disabled{% endunless %}>
+      {% if product.available %}Quick Add{% else %}Sold Out{% endif %}
+    </button>
+  </div>
+
+  <div class="p-4">
+    <h3 class="font-display text-[15px] leading-snug text-white">
+      <a href="{{ product.url }}" class="transition hover:text-gold">{{ product.title }}</a>
+    </h3>
+    <div class="mt-1 flex items-baseline gap-2">
+      <span class="text-sm font-semibold text-gold">{{ product.price | money }}</span>
+      {%- if on_sale -%}
+        <span class="text-xs text-white/40 line-through">{{ product.compare_at_price | money }}</span>
+      {%- endif -%}
+    </div>
+    {%- if product.metafields.reviews.rating_count -%}
+      <p class="mt-2 text-[11px] text-white/50">★★★★★ ({{ product.metafields.reviews.rating_count }})</p>
+    {%- else -%}
+      <p class="mt-2 text-[11px] tracking-widest text-gold/70">★★★★★</p>
+    {%- endif -%}
+  </div>
+</div>

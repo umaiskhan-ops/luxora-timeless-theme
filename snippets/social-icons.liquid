@@ -1,0 +1,23 @@
+{% comment %} Social media icons driven by theme settings. {% endcomment %}
+<ul class="flex items-center gap-3">
+  {%- if settings.social_facebook != blank -%}
+  <li><a href="{{ settings.social_facebook }}" target="_blank" rel="noopener" aria-label="Facebook" class="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition hover:bg-gold hover:text-white">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-9h3l.5-3.5H13V7.3c0-1 .3-1.7 1.8-1.7H17V2.4A25 25 0 0 0 14.4 2C11.9 2 10 3.5 10 6.9v2.6H7V13h3v9z"/></svg></a></li>
+  {%- endif -%}
+  {%- if settings.social_instagram != blank -%}
+  <li><a href="{{ settings.social_instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition hover:bg-gold hover:text-white">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a></li>
+  {%- endif -%}
+  {%- if settings.social_pinterest != blank -%}
+  <li><a href="{{ settings.social_pinterest }}" target="_blank" rel="noopener" aria-label="Pinterest" class="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition hover:bg-gold hover:text-white">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.6 19.3c-.1-.8-.2-2 0-2.9l1.2-5s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.5 0 .9-.6 2.2-.9 3.5-.3 1 .5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.2 0-2.2-1.5-3.8-4-3.8-2.9 0-4.7 2.1-4.7 4.5 0 .8.2 1.4.6 1.9.2.2.2.3.1.6l-.2.8c-.1.3-.3.4-.6.2-1.2-.5-1.8-1.9-1.8-3.5 0-2.6 2.2-5.7 6.5-5.7 3.5 0 5.8 2.5 5.8 5.2 0 3.6-2 6.2-4.9 6.2-1 0-1.9-.5-2.2-1.2l-.6 2.3c-.2.8-.7 1.7-1.1 2.3A10 10 0 1 0 12 2z"/></svg></a></li>
+  {%- endif -%}
+  {%- if settings.social_youtube != blank -%}
+  <li><a href="{{ settings.social_youtube }}" target="_blank" rel="noopener" aria-label="YouTube" class="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition hover:bg-gold hover:text-white">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.4-.4-5a2.6 2.6 0 0 0-1.8-1.8C19.2 4.7 12 4.7 12 4.7s-7.2 0-8.8.5A2.6 2.6 0 0 0 1.4 7C1 8.6 1 12 1 12s0 3.4.4 5a2.6 2.6 0 0 0 1.8 1.8c1.6.5 8.8.5 8.8.5s7.2 0 8.8-.5A2.6 2.6 0 0 0 22.6 17c.4-1.6.4-5 .4-5zM9.7 15.3V8.7l6 3.3z"/></svg></a></li>
+  {%- endif -%}
+  {%- if settings.social_tiktok != blank -%}
+  <li><a href="{{ settings.social_tiktok }}" target="_blank" rel="noopener" aria-label="TikTok" class="grid h-9 w-9 place-items-center rounded-full border border-gold/30 text-gold transition hover:bg-gold hover:text-white">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v13.2a2.7 2.7 0 1 1-2.2-2.7v-3a5.7 5.7 0 1 0 5.2 5.7V9a7 7 0 0 0 4 1.3V7.3a4 4 0 0 1-4-4z"/></svg></a></li>
+  {%- endif -%}
+</ul>

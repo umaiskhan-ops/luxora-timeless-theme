@@ -1,0 +1,30 @@
+{% comment %} Single cart line item. Usage: {% render 'cart-item', item: item, index: forloop.index %} {% endcomment %}
+<div class="flex gap-5 border-b border-black/5 py-6" data-line-item="{{ index }}">
+  <a href="{{ item.url }}" class="w-24 shrink-0 bg-soft">
+    {%- if item.image -%}
+      <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" class="h-28 w-full object-cover" loading="lazy" width="240" height="280">
+    {%- endif -%}
+  </a>
+  <div class="flex-1">
+    <div class="flex items-start justify-between gap-4">
+      <div>
+        <a href="{{ item.url }}" class="font-display text-lg hover:text-gold">{{ item.product.title }}</a>
+        {%- unless item.variant.title contains 'Default' -%}
+          <p class="mt-1 text-xs uppercase tracking-[.2em] text-ink/50">{{ item.variant.title }}</p>
+        {%- endunless -%}
+        {%- if item.selling_plan_allocation -%}
+          <p class="text-xs text-ink/50">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
+      </div>
+      <span class="text-sm font-semibold">{{ item.final_line_price | money }}</span>
+    </div>
+    <div class="mt-4 flex items-center gap-4">
+      <div class="inline-flex items-center border border-black/10">
+        <button type="button" class="px-3 py-2 leading-none hover:text-gold" data-qty-change="{{ index }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease">&minus;</button>
+        <span class="w-10 text-center text-sm">{{ item.quantity }}</span>
+        <button type="button" class="px-3 py-2 leading-none hover:text-gold" data-qty-change="{{ index }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="Increase">+</button>
+      </div>
+      <button type="button" class="text-[11px] uppercase tracking-[.2em] text-ink/50 underline hover:text-gold" data-qty-change="{{ index }}" data-qty="0">Remove</button>
+    </div>
+  </div>
+</div>

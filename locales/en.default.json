@@ -1,0 +1,21 @@
+{
+  "general": {
+    "search": { "placeholder": "Search for rings, necklaces, gifts…", "title": "Search" },
+    "newsletter": { "heading": "Join our exclusive club", "button": "Subscribe", "success": "Thanks for subscribing." },
+    "404": { "title": "Page not found", "subtext": "The page you are looking for no longer exists." }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price"
+    }
+  },
+  "cart": {
+    "general": { "title": "Your Cart", "empty": "Your cart is empty", "subtotal": "Subtotal", "checkout": "Proceed to Checkout", "continue": "Continue Shopping", "remove": "Remove" }
+  },
+  "accessibility": { "skip_to_text": "Skip to content" }
+}

@@ -1,0 +1,26 @@
+{% comment %}
+  Colour swatch circles driven by settings.swatch_map (name:hex per line).
+  Usage: {% render 'color-swatch', product: product, option: option, option_index: forloop.index0 %}
+{% endcomment %}
+{%- assign swatch_lines = settings.swatch_map | newline_to_br | split: '<br />' -%}
+<div class="flex flex-wrap items-center gap-3" role="radiogroup" aria-label="{{ option.name }}">
+  {%- for value in option.values -%}
+    {%- assign hex = '' -%}
+    {%- for line in swatch_lines -%}
+      {%- assign pair = line | strip | split: ':' -%}
+      {%- if pair[0] | downcase == value | downcase -%}{%- assign hex = pair[1] -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if hex == blank -%}{%- assign hex = value | downcase | replace: ' ', '' -%}{%- endif -%}
+    <button type="button"
+            class="swatch"
+            role="radio"
+            data-swatch
+            data-option-index="{{ option_index }}"
+            data-value="{{ value | escape }}"
+            aria-checked="{% if option.selected_value == value %}true{% else %}false{% endif %}"
+            aria-label="{{ option.name }}: {{ value }}"
+            title="{{ value }}"
+            style="background:{{ hex }}"></button>
+  {%- endfor -%}
+</div>
+<p class="mt-2 text-xs uppercase tracking-[.2em] text-ink/50">{{ option.name }}: <span class="text-ink">{{ option.selected_value }}</span></p>

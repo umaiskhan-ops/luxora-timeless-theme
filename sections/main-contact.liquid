@@ -1,0 +1,49 @@
+<section class="py-14">
+  <div class="container-lux grid gap-10 lg:grid-cols-2">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h1 class="section-title mt-2">{{ section.settings.heading }}</h1>
+      <p class="mt-4 max-w-md text-sm text-ink/65">{{ section.settings.text }}</p>
+      <ul class="mt-6 space-y-2 text-sm text-ink/70">
+        <li><strong class="text-navy">Email:</strong> {{ section.settings.email }}</li>
+        <li><strong class="text-navy">Phone:</strong> {{ section.settings.phone }}</li>
+        <li><strong class="text-navy">Atelier:</strong> {{ section.settings.address }}</li>
+      </ul>
+      <div class="mt-8 aspect-[4/3] w-full bg-soft">
+        {%- if section.settings.map_embed != blank -%}{{ section.settings.map_embed }}
+        {%- else -%}<div class="grid h-full place-items-center text-xs uppercase tracking-[.2em] text-ink/40">Map placeholder</div>{%- endif -%}
+      </div>
+    </div>
+
+    <div class="border border-black/10 p-7">
+      {% form 'contact' %}
+        {%- if form.posted_successfully? -%}
+          <p class="mb-4 border border-gold bg-gold/10 p-4 text-sm">Thank you — we will reply within 24 hours.</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="mb-4 border border-red-300 bg-red-50 p-4 text-sm text-red-700">{{ form.errors | default_errors }}</p>
+        {%- endif -%}
+        <label class="block text-xs uppercase tracking-[.18em] text-ink/60" for="ContactName">Name</label>
+        <input id="ContactName" type="text" name="contact[name]" required value="{{ form.name }}" class="mt-2 w-full border border-black/15 px-4 py-3 text-sm outline-none focus:border-gold">
+        <label class="mt-5 block text-xs uppercase tracking-[.18em] text-ink/60" for="ContactEmail">Email</label>
+        <input id="ContactEmail" type="email" name="contact[email]" required value="{{ form.email }}" class="mt-2 w-full border border-black/15 px-4 py-3 text-sm outline-none focus:border-gold">
+        <label class="mt-5 block text-xs uppercase tracking-[.18em] text-ink/60" for="ContactBody">Message</label>
+        <textarea id="ContactBody" name="contact[body]" rows="6" required class="mt-2 w-full border border-black/15 px-4 py-3 text-sm outline-none focus:border-gold">{{ form.body }}</textarea>
+        <button type="submit" class="btn btn-gold mt-6 w-full">Send Message</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "We'd Love To Hear From You" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Our client care team is available 24/7 to help with orders, sizing and bespoke commissions." },
+    { "type": "text", "id": "email", "label": "Email", "default": "care@luxora.com" },
+    { "type": "text", "id": "phone", "label": "Phone", "default": "+1 (800) 555-0199" },
+    { "type": "text", "id": "address", "label": "Address", "default": "18 Bond Street, London" },
+    { "type": "html", "id": "map_embed", "label": "Map embed code" }
+  ]
+}
+{% endschema %}

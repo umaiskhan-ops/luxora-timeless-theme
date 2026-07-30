@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "main-policy", "settings": { "eyebrow": "Support", "heading": "Refund Policy", "policy": "refund" } } },
+  "order": ["main"]
+}

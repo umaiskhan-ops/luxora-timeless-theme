@@ -1,0 +1,135 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<section class="py-10 lg:py-16" data-variant-picker>
+  <div class="container-lux">
+
+    <nav class="mb-6 text-[11px] uppercase tracking-[.18em] text-ink/45">
+      <a href="{{ routes.root_url }}" class="hover:text-gold">Home</a> /
+      {%- if collection -%}<a href="{{ collection.url }}" class="hover:text-gold">{{ collection.title }}</a> / {%- endif -%}
+      <span class="text-ink">{{ product.title }}</span>
+    </nav>
+
+    <div class="grid gap-10 lg:grid-cols-2">
+
+      {% comment %} Gallery with hover zoom {% endcomment %}
+      <div>
+        <div class="zoom-wrap bg-soft" data-zoom>
+          <img data-main-image
+               src="{{ product.featured_image | image_url: width: 1400 }}"
+               alt="{{ product.featured_image.alt | default: product.title | escape }}"
+               class="w-full object-cover" width="1400" height="1400" fetchpriority="high">
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="mt-4 grid grid-cols-5 gap-3">
+            {%- for image in product.images -%}
+              <button type="button"
+                      class="aspect-square overflow-hidden bg-soft {% if forloop.first %}ring-2 ring-gold{% endif %}"
+                      data-gallery-item
+                      data-image-group="{{ image.alt | escape }}"
+                      data-image-src="{{ image | image_url: width: 1400 }}"
+                      data-image-alt="{{ image.alt | escape }}">
+                <img src="{{ image | image_url: width: 300 }}" alt="{{ image.alt | escape }}" class="h-full w-full object-cover" loading="lazy" width="150" height="150">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      {% comment %} Details {% endcomment %}
+      <div>
+        {%- if product.vendor != blank -%}<p class="eyebrow">{{ product.vendor }}</p>{%- endif -%}
+        <h1 class="mt-2 font-display text-3xl leading-tight lg:text-4xl">{{ product.title }}</h1>
+
+        <div class="mt-3 flex items-center gap-3">
+          <span class="text-gold">★★★★★</span>
+          <span class="text-xs text-ink/50">{{ product.metafields.reviews.rating_count | default: 128 }} reviews</span>
+        </div>
+
+        <div class="mt-5 flex items-baseline gap-3">
+          <span class="font-display text-3xl text-navy" data-price>{{ current_variant.price | money }}</span>
+          <span class="text-base text-ink/40 line-through {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}" data-compare-price>
+            {{ current_variant.compare_at_price | money }}
+          </span>
+        </div>
+
+        <div class="mt-6 space-y-1 text-sm leading-relaxed text-ink/70">
+          {{ product.description | strip_html | truncatewords: 45 }}
+        </div>
+
+        <form data-product-form action="{{ routes.cart_add_url }}" method="post" class="mt-8">
+          <input type="hidden" name="id" value="{{ current_variant.id }}">
+
+          {%- unless product.has_only_default_variant -%}
+            <div class="space-y-6">
+              {%- for option in product.options_with_values -%}
+                <input type="hidden" data-option-input="{{ forloop.index0 }}" value="{{ option.selected_value | escape }}">
+                {%- if option.name == settings.swatch_option_name -%}
+                  {% render 'color-swatch', product: product, option: option, option_index: forloop.index0 %}
+                {%- else -%}
+                  <div>
+                    <p class="mb-2 text-xs uppercase tracking-[.2em] text-ink/60">{{ option.name }}</p>
+                    <div class="flex flex-wrap gap-2">
+                      {%- for value in option.values -%}
+                        <button type="button" data-swatch data-option-index="{{ forloop.parentloop.index0 }}" data-value="{{ value | escape }}"
+                                aria-checked="{% if option.selected_value == value %}true{% else %}false{% endif %}"
+                                class="border border-black/15 px-4 py-2 text-xs uppercase tracking-[.12em] transition hover:border-gold aria-checked:border-gold aria-checked:bg-navy aria-checked:text-white">
+                          {{ value }}
+                        </button>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          <div class="mt-7 flex flex-wrap items-center gap-4" data-qty-wrapper>
+            <div class="inline-flex items-center border border-black/15">
+              <button type="button" data-qty-step="-1" class="px-4 py-3 leading-none hover:text-gold" aria-label="Decrease">&minus;</button>
+              <input type="number" name="quantity" value="1" min="1" data-qty-input class="w-14 border-0 text-center text-sm outline-none" aria-label="Quantity">
+              <button type="button" data-qty-step="1" class="px-4 py-3 leading-none hover:text-gold" aria-label="Increase">+</button>
+            </div>
+            <button type="submit" data-atc-button class="btn btn-gold flex-1" {% unless product.available %}disabled{% endunless %}>
+              {% if product.available %}Add to Cart{% else %}Sold Out{% endif %}
+            </button>
+          </div>
+
+          <button type="submit" name="checkout" class="btn btn-dark mt-3 w-full">Buy It Now</button>
+        </form>
+
+        <ul class="mt-8 grid grid-cols-2 gap-3 border-t border-black/10 pt-6 text-xs text-ink/60">
+          <li>✓ Free insured worldwide shipping</li>
+          <li>✓ Lifetime warranty</li>
+          <li>✓ 30-day returns</li>
+          <li>✓ Luxury gift packaging</li>
+        </ul>
+
+        <script type="application/json" data-variant-json>
+          {{ product.variants | json }}
+        </script>
+      </div>
+    </div>
+
+    {% comment %} Style inspiration {% endcomment %}
+    <div class="mt-20">
+      <div class="text-center">
+        <p class="eyebrow">Style Inspiration</p>
+        <h2 class="section-title mt-2">Complete The Look</h2>
+      </div>
+      <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {%- assign related = collections[section.settings.related_collection] | default: product.collections.first -%}
+        {%- for p in related.products limit: 4 -%}
+          {%- unless p.id == product.id -%}{% render 'product-card', product: p %}{%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "collection", "id": "related_collection", "label": "Style inspiration collection" }
+  ]
+}
+{% endschema %}

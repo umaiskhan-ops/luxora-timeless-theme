@@ -1,0 +1,50 @@
+{% comment %} AJAX slide-out cart. Contents are rendered by theme.js. {% endcomment %}
+<div id="CartDrawer" class="drawer" aria-hidden="true" role="dialog" aria-label="Cart">
+  <div class="drawer__overlay"></div>
+  <aside class="drawer__panel">
+    <header class="flex items-center justify-between border-b border-black/10 px-5 py-4">
+      <h2 class="font-display text-lg">Your Cart</h2>
+      <button type="button" data-drawer-close aria-label="Close cart" class="text-2xl leading-none hover:text-gold">&times;</button>
+    </header>
+
+    {%- if section.settings.show_shipping_bar -%}
+      <div class="border-b border-black/5 px-5 py-4" data-shipping-progress>
+        <p class="text-xs text-ink/70" data-shipping-text></p>
+        <div class="progress mt-2"><div class="progress__bar" data-shipping-bar></div></div>
+      </div>
+    {%- endif -%}
+
+    <div class="flex-1 overflow-y-auto px-5" data-cart-items>
+      {%- for item in cart.items -%}
+        {% render 'cart-item', item: item, index: forloop.index %}
+      {%- endfor -%}
+    </div>
+
+    {%- if settings.enable_cart_upsell -%}
+      <div class="px-5 py-4">
+        {% render 'upsell-products', heading: 'You may also love', limit: 2 %}
+      </div>
+    {%- endif -%}
+
+    <footer class="border-t border-black/10 px-5 py-5">
+      <div class="flex items-center justify-between">
+        <span class="text-xs uppercase tracking-[.2em] text-ink/60">Subtotal</span>
+        <span class="font-display text-xl" data-cart-total>{{ cart.total_price | money }}</span>
+      </div>
+      <p class="mt-1 text-[11px] text-ink/50">Taxes and shipping calculated at checkout.</p>
+      <form action="{{ routes.cart_url }}" method="post">
+        <button type="submit" name="checkout" class="btn btn-gold mt-4 w-full">Proceed to Checkout</button>
+      </form>
+      <button type="button" data-drawer-close class="mt-3 w-full text-[11px] uppercase tracking-[.2em] text-ink/50 underline hover:text-gold">Continue Shopping</button>
+    </footer>
+  </aside>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    { "type": "checkbox", "id": "show_shipping_bar", "label": "Show free shipping progress bar", "default": true }
+  ]
+}
+{% endschema %}

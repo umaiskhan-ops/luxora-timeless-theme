@@ -1,0 +1,84 @@
+<section class="hero">
+  <div class="hero__media">
+    {%- if section.settings.image -%}
+      <img src="{{ section.settings.image | image_url: width: 2400 }}" alt="{{ section.settings.heading | escape }}" width="2400" height="1400" fetchpriority="high">
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'w-full h-full object-cover opacity-40' }}
+    {%- endif -%}
+  </div>
+  <div class="hero__overlay"></div>
+  <div class="hero__glow"></div>
+
+  <div class="container-lux relative z-10 py-20">
+    <div class="max-w-xl text-white">
+      <p class="eyebrow animate-fade-in">{{ section.settings.eyebrow }}</p>
+      <h1 class="mt-4 font-display text-[clamp(2.6rem,7vw,4.6rem)] font-semibold leading-[1.05]">
+        {{ section.settings.heading }}<br>
+        <span class="gold-gradient-text">{{ section.settings.heading_accent }}</span>
+      </h1>
+      <p class="mt-5 max-w-md text-sm leading-relaxed text-white/70">{{ section.settings.subtext }}</p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="btn btn-gold">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.button_2_label != blank -%}
+          <a href="{{ section.settings.button_2_link }}" class="btn btn-outline">{{ section.settings.button_2_label }}</a>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {%- for block in section.blocks -%}
+            <div class="flex items-start gap-3" {{ block.shopify_attributes }}>
+              <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center border border-gold/40 text-gold">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m5 13 4 4L19 7"/></svg>
+              </span>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[.14em]">{{ block.settings.title }}</p>
+                <p class="text-[11px] text-white/55">{{ block.settings.text }}</p>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- if section.settings.video_link != blank -%}
+    <a href="{{ section.settings.video_link }}" class="absolute bottom-16 right-8 z-10 hidden items-center gap-4 text-white lg:flex">
+      <span class="pulse-gold grid h-14 w-14 place-items-center rounded-full bg-gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+      <span>
+        <span class="block text-xs font-semibold uppercase tracking-[.2em]">Watch Video</span>
+        <span class="block text-[11px] text-white/60">Discover our story</span>
+      </span>
+    </a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Beauty That Lasts Forever" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "TIMELESS" },
+    { "type": "text", "id": "heading_accent", "label": "Heading accent (gold)", "default": "ELEGANCE" },
+    { "type": "textarea", "id": "subtext", "label": "Description", "default": "Discover the perfect blend of luxury and craftsmanship. Jewelry that tells your story." },
+    { "type": "text", "id": "button_label", "label": "Primary button", "default": "Shop Collection" },
+    { "type": "url", "id": "button_link", "label": "Primary button link" },
+    { "type": "text", "id": "button_2_label", "label": "Secondary button", "default": "Explore More" },
+    { "type": "url", "id": "button_2_link", "label": "Secondary button link" },
+    { "type": "url", "id": "video_link", "label": "Watch video link" }
+  ],
+  "blocks": [
+    { "type": "badge", "name": "Trust badge", "limit": 3, "settings": [
+      { "type": "text", "id": "title", "label": "Title", "default": "100% Certified" },
+      { "type": "text", "id": "text", "label": "Text", "default": "Authentic products" }
+    ]}
+  ],
+  "presets": [{ "name": "Hero", "blocks": [{ "type": "badge" }, { "type": "badge" }, { "type": "badge" }] }]
+}
+{% endschema %}

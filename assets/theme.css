@@ -1,0 +1,118 @@
+/* ==========================================================================
+   LUXORA JEWELRY — theme.css
+   Tailwind is loaded via CDN in layout/theme.liquid.
+   This file holds design tokens, custom components + animations.
+   ========================================================================== */
+
+:root{
+  --luxora-navy:#1a1a2e;
+  --luxora-navy-soft:#22223c;
+  --luxora-gold:#d4af37;
+  --luxora-gold-dark:#b8952c;
+  --luxora-gold-light:#e8cd7a;
+  --luxora-soft:#f8f9fa;
+  --luxora-text:#333333;
+  --luxora-radius:2px;
+  --luxora-ease:cubic-bezier(.22,.61,.36,1);
+  --gradient-gold:linear-gradient(135deg,var(--luxora-gold-light),var(--luxora-gold) 45%,var(--luxora-gold-dark));
+  --gradient-navy:linear-gradient(180deg,rgba(26,26,46,.15),rgba(26,26,46,.92));
+  --shadow-lux:0 24px 60px -24px rgba(26,26,46,.55);
+  --shadow-gold:0 0 0 1px rgba(212,175,55,.5),0 18px 40px -18px rgba(212,175,55,.45);
+}
+
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--luxora-text);}
+h1,h2,h3,h4,.font-display{font-family:'Playfair Display',Georgia,serif;}
+
+/* ---------- Typography helpers ---------- */
+.eyebrow{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--luxora-gold);font-weight:600;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.9rem);line-height:1.1;letter-spacing:.02em;}
+.gold-text{color:var(--luxora-gold);}
+.gold-gradient-text{background:var(--gradient-gold);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.divider-diamond{display:flex;align-items:center;justify-content:center;gap:.75rem;}
+.divider-diamond::before,.divider-diamond::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,transparent,var(--luxora-gold));}
+.divider-diamond::after{background:linear-gradient(270deg,transparent,var(--luxora-gold));}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 2rem;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;border-radius:var(--luxora-radius);transition:all .35s var(--luxora-ease);cursor:pointer;}
+.btn-gold{background:var(--gradient-gold);color:#fff;box-shadow:0 10px 24px -12px rgba(212,175,55,.8);}
+.btn-gold:hover{filter:brightness(.94);transform:translateY(-2px);}
+.btn-outline{border:1px solid rgba(255,255,255,.6);color:#fff;background:transparent;}
+.btn-outline:hover{background:#fff;color:var(--luxora-navy);}
+.btn-dark{background:var(--luxora-navy);color:#fff;}
+.btn-dark:hover{background:#2a2a4a;}
+.btn[disabled]{opacity:.5;cursor:not-allowed;transform:none;}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;background:var(--luxora-navy);overflow:hidden;}
+.hero__media{position:absolute;inset:0;}
+.hero__media img{width:100%;height:100%;object-fit:cover;}
+.hero__overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(16,16,30,.95) 0%,rgba(16,16,30,.7) 45%,rgba(16,16,30,.15) 100%);}
+.hero__glow{position:absolute;width:520px;height:520px;right:-120px;top:-80px;background:radial-gradient(circle,rgba(212,175,55,.28),transparent 65%);filter:blur(20px);pointer-events:none;}
+
+/* ---------- Product card ---------- */
+.product-card{position:relative;background:var(--luxora-navy);border:1px solid rgba(212,175,55,.14);border-radius:var(--luxora-radius);overflow:hidden;transition:transform .45s var(--luxora-ease),box-shadow .45s var(--luxora-ease),border-color .45s;}
+.product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-gold);border-color:rgba(212,175,55,.7);}
+.product-card__media{position:relative;aspect-ratio:1/1;overflow:hidden;background:#101020;}
+.product-card__media img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--luxora-ease),opacity .4s;}
+.product-card:hover .product-card__media img.primary{transform:scale(1.08);}
+.product-card__media img.secondary{position:absolute;inset:0;opacity:0;}
+.product-card:hover .product-card__media img.secondary{opacity:1;}
+.product-card__badge{position:absolute;top:.75rem;left:.75rem;background:var(--gradient-gold);color:#fff;font-size:.6rem;letter-spacing:.16em;padding:.25rem .6rem;text-transform:uppercase;}
+.product-card__quick{position:absolute;left:0;right:0;bottom:0;transform:translateY(102%);transition:transform .4s var(--luxora-ease);}
+.product-card:hover .product-card__quick{transform:translateY(0);}
+
+/* ---------- Zoom ---------- */
+.zoom-wrap{position:relative;overflow:hidden;cursor:zoom-in;}
+.zoom-wrap img{transition:transform .2s ease-out;}
+.zoom-wrap.is-zooming img{transform:scale(2);}
+
+/* ---------- Swatches ---------- */
+.swatch{width:2.25rem;height:2.25rem;border-radius:9999px;border:1px solid rgba(0,0,0,.15);position:relative;transition:all .25s var(--luxora-ease);}
+.swatch:hover{transform:scale(1.08);}
+.swatch[aria-checked="true"]{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--luxora-gold);}
+
+/* ---------- Drawer ---------- */
+.drawer{position:fixed;inset:0;z-index:80;pointer-events:none;}
+.drawer[aria-hidden="false"]{pointer-events:auto;}
+.drawer__overlay{position:absolute;inset:0;background:rgba(10,10,20,.6);opacity:0;transition:opacity .4s var(--luxora-ease);backdrop-filter:blur(2px);}
+.drawer[aria-hidden="false"] .drawer__overlay{opacity:1;}
+.drawer__panel{position:absolute;top:0;right:0;height:100%;width:min(440px,100%);background:#fff;transform:translateX(100%);transition:transform .45s var(--luxora-ease);display:flex;flex-direction:column;box-shadow:var(--shadow-lux);}
+.drawer[aria-hidden="false"] .drawer__panel{transform:translateX(0);}
+.drawer__panel--left{left:0;right:auto;transform:translateX(-100%);background:var(--luxora-navy);color:#fff;}
+
+/* ---------- Progress ---------- */
+.progress{height:4px;background:rgba(26,26,46,.12);border-radius:9999px;overflow:hidden;}
+.progress__bar{height:100%;background:var(--gradient-gold);width:0;transition:width .6s var(--luxora-ease);}
+
+/* ---------- FAQ ---------- */
+.faq-item__panel{max-height:0;overflow:hidden;transition:max-height .45s var(--luxora-ease);}
+.faq-item[open] .faq-item__icon,.faq-item.is-open .faq-item__icon{transform:rotate(45deg);}
+.faq-item__icon{transition:transform .3s var(--luxora-ease);}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes pulseGold{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.55)}50%{box-shadow:0 0 0 14px rgba(212,175,55,0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.reveal{opacity:0;}
+.reveal.is-visible{animation:fadeUp .9s var(--luxora-ease) forwards;}
+.animate-fade-in{animation:fadeIn .8s var(--luxora-ease) both;}
+.animate-slide-in{animation:slideInRight .6s var(--luxora-ease) both;}
+.pulse-gold{animation:pulseGold 2.4s infinite;}
+.shimmer{background:linear-gradient(90deg,rgba(212,175,55,0),rgba(212,175,55,.35),rgba(212,175,55,0));background-size:200% 100%;animation:shimmer 2.2s infinite;}
+
+/* ---------- Utility ---------- */
+.container-lux{max-width:1320px;margin-inline:auto;padding-inline:1.25rem;}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+.no-scroll{overflow:hidden;}
+.marquee{white-space:nowrap;}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1023px){ .hero{min-height:72vh;} }
+@media (max-width:767px){
+  .hero{min-height:70vh;text-align:left;}
+  .btn{padding:.75rem 1.4rem;font-size:.72rem;}
+  .drawer__panel{width:100%;}
+}

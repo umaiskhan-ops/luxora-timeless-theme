@@ -1,0 +1,73 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "LUXORA Jewelry",
+    "theme_version": "1.0.0",
+    "theme_author": "LUXORA",
+    "theme_documentation_url": "https://shopify.dev",
+    "theme_support_url": "https://shopify.dev"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      { "type": "color", "id": "color_primary",   "label": "Primary (deep navy)", "default": "#1a1a2e" },
+      { "type": "color", "id": "color_secondary", "label": "Secondary (gold)",    "default": "#d4af37" },
+      { "type": "color", "id": "color_accent",    "label": "Accent (soft white)", "default": "#f8f9fa" },
+      { "type": "color", "id": "color_text",      "label": "Body text",           "default": "#333333" }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      { "type": "select", "id": "font_pair", "label": "Font pairing", "default": "playfair_inter",
+        "options": [
+          { "value": "playfair_inter", "label": "Playfair Display + Inter" },
+          { "value": "cormorant_inter", "label": "Cormorant + Inter" },
+          { "value": "inter_inter", "label": "Inter + Inter" }
+        ] },
+      { "type": "range", "id": "heading_scale", "label": "Heading scale", "min": 90, "max": 130, "step": 5, "unit": "%", "default": 100 }
+    ]
+  },
+  {
+    "name": "Logo & Branding",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo image" },
+      { "type": "range", "id": "logo_width", "label": "Logo width", "min": 80, "max": 260, "step": 10, "unit": "px", "default": 150 },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
+      { "type": "text", "id": "brand_tagline", "label": "Tagline", "default": "Beauty That Lasts Forever" }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      { "type": "url", "id": "social_facebook",  "label": "Facebook" },
+      { "type": "url", "id": "social_instagram", "label": "Instagram" },
+      { "type": "url", "id": "social_pinterest", "label": "Pinterest" },
+      { "type": "url", "id": "social_youtube",   "label": "YouTube" },
+      { "type": "url", "id": "social_tiktok",    "label": "TikTok" }
+    ]
+  },
+  {
+    "name": "Cart & Shipping",
+    "settings": [
+      { "type": "number", "id": "free_shipping_threshold", "label": "Free shipping threshold (in store currency, no decimals)", "default": 199 },
+      { "type": "checkbox", "id": "enable_cart_drawer", "label": "Enable slide-out cart", "default": true },
+      { "type": "checkbox", "id": "enable_cart_upsell", "label": "Show cart upsell recommendations", "default": true }
+    ]
+  },
+  {
+    "name": "Currency",
+    "settings": [
+      { "type": "checkbox", "id": "currency_code_enabled", "label": "Show currency codes (USD $10.00)", "default": false }
+    ]
+  },
+  {
+    "name": "Color swatches",
+    "settings": [
+      { "type": "text", "id": "swatch_option_name", "label": "Option name used for swatches", "default": "Color" },
+      { "type": "textarea", "id": "swatch_map", "label": "Swatch colour map",
+        "info": "One per line: name:hex — e.g. Gold:#d4af37",
+        "default": "Gold:#d4af37\nRose Gold:#b76e79\nWhite Gold:#e8e8e8\nPlatinum:#dcdcdc\nSilver:#c0c0c0" }
+    ]
+  }
+]

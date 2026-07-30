@@ -1,0 +1,22 @@
+<section class="bg-navy py-24 text-white">
+  <div class="container-lux text-center">
+    <p class="font-display text-[clamp(4rem,14vw,9rem)] leading-none gold-gradient-text">404</p>
+    <h1 class="mt-3 font-display text-2xl">Page Not Found</h1>
+    <p class="mx-auto mt-3 max-w-md text-sm text-white/60">The page you are looking for has moved or no longer exists.</p>
+    <a href="{{ routes.root_url }}" class="btn btn-gold mt-8">Go Back Home</a>
+  </div>
+</section>
+{%- assign nf_collection = collections[section.settings.collection] -%}
+{%- if nf_collection.products.size > 0 -%}
+  <section class="bg-navy pb-20 text-white">
+    <div class="container-lux">
+      <h2 class="section-title text-center text-white">You May Love</h2>
+      <div class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {%- for product in nf_collection.products limit: 4 -%}{% render 'product-card', product: product %}{%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+{% schema %}
+{ "name": "404", "settings": [ { "type": "collection", "id": "collection", "label": "Featured products" } ] }
+{% endschema %}

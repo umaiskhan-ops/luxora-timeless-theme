@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_primary | default: '#1a1a2e' }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    <title>{{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+    {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
+
+    {% comment %} Fonts {% endcomment %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    {% comment %} Tailwind CSS via CDN (per project requirement) {% endcomment %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: '{{ settings.color_primary | default: "#1a1a2e" }}',
+              gold: '{{ settings.color_secondary | default: "#d4af37" }}',
+              soft: '{{ settings.color_accent | default: "#f8f9fa" }}',
+              ink:  '{{ settings.color_text | default: "#333333" }}'
+            },
+            fontFamily: {
+              display: ['Playfair Display', 'serif'],
+              body: ['Inter', 'sans-serif']
+            }
+          }
+        }
+      }
+    </script>
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      window.LUXORA = {
+        routes: {
+          cart_add_url: '{{ routes.cart_add_url }}',
+          cart_change_url: '{{ routes.cart_change_url }}',
+          cart_update_url: '{{ routes.cart_update_url }}',
+          cart_url: '{{ routes.cart_url }}',
+          predictive_search_url: '{{ routes.predictive_search_url }}'
+        },
+        moneyFormat: {{ shop.money_format | json }},
+        freeShippingThreshold: {{ settings.free_shipping_threshold | default: 199 | times: 100 }},
+        cartCount: {{ cart.item_count }}
+      };
+    </script>
+
+    {{ content_for_header }}
+  </head>
+
+  <body class="template-{{ template.name | handle }} bg-white font-body text-ink antialiased overflow-x-hidden">
+    <a class="skip-link sr-only focus:not-sr-only" href="#MainContent">{{ 'accessibility.skip_to_text' | t | default: 'Skip to content' }}</a>
+
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+
+    <main id="MainContent" role="main" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    {% section 'footer' %}
+    {% section 'cart-drawer' %}
+
+    <div id="ToastRoot" class="fixed bottom-6 right-6 z-[100] space-y-2"></div>
+
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    {{ content_for_footer }}
+  </body>
+</html>

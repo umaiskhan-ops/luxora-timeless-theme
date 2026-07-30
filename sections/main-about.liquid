@@ -1,0 +1,60 @@
+<section class="py-14">
+  <div class="container-lux">
+    <header class="mx-auto max-w-2xl text-center">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="section-title mt-2">{{ section.settings.heading }}</h1>
+      <p class="mt-4 text-sm text-ink/65">{{ section.settings.intro }}</p>
+    </header>
+
+    <div class="mt-12 grid items-center gap-10 lg:grid-cols-2">
+      <div class="reveal">
+        {%- if section.settings.image -%}
+          <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" class="w-full object-cover" loading="lazy" width="1200" height="900">
+        {%- else -%}{{ 'lifestyle-1' | placeholder_svg_tag: 'w-full' }}{%- endif -%}
+      </div>
+      <div class="reveal space-y-4 text-sm leading-relaxed text-ink/70">{{ section.settings.story }}</div>
+    </div>
+
+    <div class="mt-16 border-y border-black/10 py-12 text-center">
+      <p class="eyebrow">Our Mission</p>
+      <p class="mx-auto mt-3 max-w-3xl font-display text-2xl leading-snug">{{ section.settings.mission }}</p>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="mt-16">
+        <h2 class="section-title text-center">The Atelier</h2>
+        <div class="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
+          {%- for block in section.blocks -%}
+            <div class="reveal text-center" {{ block.shopify_attributes }}>
+              {%- if block.settings.image -%}
+                <img src="{{ block.settings.image | image_url: width: 500 }}" alt="{{ block.settings.name | escape }}" class="aspect-square w-full object-cover" loading="lazy" width="250" height="250">
+              {%- endif -%}
+              <p class="mt-4 font-display text-lg">{{ block.settings.name }}</p>
+              <p class="text-xs uppercase tracking-[.18em] text-gold">{{ block.settings.role }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "About",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "CRAFTED TO PERFECTION" },
+    { "type": "textarea", "id": "intro", "label": "Intro", "default": "LUXORA was founded on a simple belief: beauty should last forever." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "richtext", "id": "story", "label": "Story", "default": "<p>Every LUXORA piece begins as a sketch and ends in the hands of master goldsmiths. We source responsibly, cut precisely and finish by hand.</p>" },
+    { "type": "textarea", "id": "mission", "label": "Mission", "default": "To create heirloom jewelry that carries your story across generations." }
+  ],
+  "blocks": [
+    { "type": "member", "name": "Team member", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Photo" },
+      { "type": "text", "id": "name", "label": "Name", "default": "Elena Rossi" },
+      { "type": "text", "id": "role", "label": "Role", "default": "Master Goldsmith" }
+    ]}
+  ]
+}
+{% endschema %}

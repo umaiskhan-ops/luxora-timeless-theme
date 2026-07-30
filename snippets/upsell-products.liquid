@@ -1,0 +1,30 @@
+{% comment %}
+  Cart / product upsell recommendations.
+  Usage: {% render 'upsell-products', heading: 'You may also love', limit: 3, product_id: product.id %}
+{% endcomment %}
+{%- assign upsell_limit = limit | default: 3 -%}
+{%- assign upsell_collection = collections[settings.upsell_collection] | default: collections.all -%}
+<div class="border-t border-black/5 pt-5">
+  <p class="eyebrow mb-3">{{ heading | default: 'Complete the look' }}</p>
+  <div class="space-y-3">
+    {%- assign shown = 0 -%}
+    {%- for p in upsell_collection.products -%}
+      {%- if shown >= upsell_limit -%}{%- break -%}{%- endif -%}
+      {%- unless p.id == product_id or p.available == false -%}
+        {%- assign shown = shown | plus: 1 -%}
+        <div class="flex items-center gap-3">
+          <a href="{{ p.url }}" class="h-16 w-16 shrink-0 overflow-hidden bg-soft">
+            {%- if p.featured_image -%}
+              <img src="{{ p.featured_image | image_url: width: 160 }}" alt="{{ p.title | escape }}" class="h-full w-full object-cover" loading="lazy" width="64" height="64">
+            {%- endif -%}
+          </a>
+          <div class="min-w-0 flex-1">
+            <a href="{{ p.url }}" class="block truncate font-display text-sm hover:text-gold">{{ p.title }}</a>
+            <span class="text-xs text-ink/60">{{ p.price | money }}</span>
+          </div>
+          <button type="button" class="btn btn-dark !px-3 !py-2 !text-[10px]" data-add-to-cart data-variant-id="{{ p.selected_or_first_available_variant.id }}">Add</button>
+        </div>
+      {%- endunless -%}
+    {%- endfor -%}
+  </div>
+</div>

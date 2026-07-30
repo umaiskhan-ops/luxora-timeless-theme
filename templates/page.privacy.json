@@ -1,0 +1,4 @@
+{
+  "sections": { "main": { "type": "main-policy", "settings": { "eyebrow": "Legal", "heading": "Privacy Policy", "policy": "privacy" } } },
+  "order": ["main"]
+}

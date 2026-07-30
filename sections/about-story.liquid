@@ -1,0 +1,45 @@
+<section class="bg-soft py-20">
+  <div class="container-lux grid items-center gap-12 lg:grid-cols-2">
+    <div class="reveal relative">
+      {%- if section.settings.image -%}
+        <img src="{{ section.settings.image | image_url: width: 1200 }}" alt="{{ section.settings.heading | escape }}" class="w-full object-cover" loading="lazy" width="1200" height="900">
+      {%- else -%}
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'w-full' }}
+      {%- endif -%}
+      <div class="pointer-events-none absolute -bottom-5 -right-5 hidden h-32 w-32 border border-gold lg:block"></div>
+    </div>
+
+    <div class="reveal">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="section-title mt-3">{{ section.settings.heading }}</h2>
+      <div class="mt-5 space-y-4 text-sm leading-relaxed text-ink/70">{{ section.settings.text }}</div>
+      <div class="mt-8 flex flex-wrap gap-3">
+        {%- if section.settings.button_label != blank -%}
+          <a href="{{ section.settings.button_link }}" class="btn btn-gold">{{ section.settings.button_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.video_link != blank -%}
+          <a href="{{ section.settings.video_link }}" class="btn btn-dark">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Watch Video
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About story",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Made With Perfection" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "EXPLORE MORE" },
+    { "type": "richtext", "id": "text", "label": "Story", "default": "<p>Since our first workshop, LUXORA has crafted jewelry designed to outlive trends. Every stone is ethically sourced, every setting finished by hand.</p>" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Discover Our Story" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "url", "id": "video_link", "label": "Video link" }
+  ],
+  "presets": [{ "name": "About story" }]
+}
+{% endschema %}

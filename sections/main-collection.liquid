@@ -1,0 +1,95 @@
+<section class="py-12">
+  <div class="container-lux">
+    <header class="text-center">
+      <p class="eyebrow">Our Collections</p>
+      <h1 class="section-title mt-2">{{ collection.title | default: 'All Jewelry' }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="mx-auto mt-4 max-w-2xl text-sm text-ink/60">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="mt-10 grid gap-8 lg:grid-cols-[260px_1fr]">
+
+      {% comment %} Filters {% endcomment %}
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <form id="FacetForm" class="space-y-6">
+          {%- if collection.filters.size > 0 -%}
+            {%- for filter in collection.filters -%}
+              <div class="border-b border-black/10 pb-5">
+                <p class="mb-3 text-xs font-semibold uppercase tracking-[.2em] text-navy">{{ filter.label }}</p>
+                {%- case filter.type -%}
+                  {%- when 'list' -%}
+                    <ul class="space-y-2">
+                      {%- for value in filter.values -%}
+                        <li>
+                          <label class="flex cursor-pointer items-center gap-2 text-sm text-ink/70 hover:text-gold">
+                            <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} onchange="this.form.submit()" class="accent-[#d4af37]">
+                            {{ value.label }} <span class="text-ink/35">({{ value.count }})</span>
+                          </label>
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  {%- when 'price_range' -%}
+                    <div class="flex items-center gap-2">
+                      <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" placeholder="Min" class="w-full border border-black/15 px-3 py-2 text-sm">
+                      <span class="text-ink/40">–</span>
+                      <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" placeholder="Max" class="w-full border border-black/15 px-3 py-2 text-sm">
+                    </div>
+                    <button type="submit" class="btn btn-dark mt-3 w-full">Apply</button>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            <p class="text-sm text-ink/50">Add filters in <em>Search &amp; Discovery</em> to enable filtering by price, colour and size.</p>
+          {%- endif -%}
+        </form>
+      </aside>
+
+      <div>
+        <div class="mb-6 flex items-center justify-between">
+          <p class="text-xs uppercase tracking-[.18em] text-ink/50">{{ collection.products_count }} products</p>
+          <form method="get" class="flex items-center gap-2">
+            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+            <label for="SortBy" class="text-xs uppercase tracking-[.18em] text-ink/50">Sort</label>
+            <select id="SortBy" name="sort_by" onchange="this.form.submit()" class="border border-black/15 px-3 py-2 text-sm outline-none focus:border-gold">
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+              {%- endfor -%}
+            </select>
+          </form>
+        </div>
+
+        {%- paginate collection.products by section.settings.products_per_page -%}
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+            {%- for product in collection.products -%}
+              {% render 'product-card', product: product %}
+            {%- else -%}
+              <p class="col-span-full py-16 text-center text-ink/50">No products found.</p>
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <nav class="mt-12 flex justify-center gap-2">
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="border border-black/15 px-4 py-2 text-sm hover:border-gold hover:text-gold">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="border border-gold bg-navy px-4 py-2 text-sm text-white">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </nav>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "range", "id": "products_per_page", "label": "Products per page", "min": 8, "max": 48, "step": 4, "default": 16 }
+  ]
+}
+{% endschema %}
