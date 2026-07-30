@@ -1,4 +1,10 @@
 <section class="hero relative">
+  <style>
+    .hero .container-lux { padding-left: 3rem !important; }
+    @media (min-width: 1024px) {
+      .hero .container-lux { padding-left: 5rem !important; }
+    }
+  </style>
   <div class="hero__media">
     {%- if section.settings.image -%}
       <img src="{{ section.settings.image | image_url: width: 2400 }}" alt="{{ section.settings.heading | escape }}" width="2400" height="1400" fetchpriority="high">
