@@ -1,41 +1,286 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": { "type": "hero", "blocks": {
-        "b1": { "type": "badge", "settings": { "title": "100% Certified", "text": "Authentic products" } },
-        "b2": { "type": "badge", "settings": { "title": "Lifetime Warranty", "text": "For peace of mind" } },
-        "b3": { "type": "badge", "settings": { "title": "Luxury Packaging", "text": "Perfect for gifting" } }
-      }, "block_order": ["b1","b2","b3"],
-      "settings": { "eyebrow": "Beauty That Lasts Forever", "heading": "TIMELESS", "heading_accent": "ELEGANCE",
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "b1": {
+          "type": "badge",
+          "settings": {
+            "title": "100% Certified",
+            "text": "Authentic products"
+          }
+        },
+        "b2": {
+          "type": "badge",
+          "settings": {
+            "title": "Lifetime Warranty",
+            "text": "For peace of mind"
+          }
+        },
+        "b3": {
+          "type": "badge",
+          "settings": {
+            "title": "Luxury Packaging",
+            "text": "Perfect for gifting"
+          }
+        }
+      },
+      "block_order": [
+        "b1",
+        "b2",
+        "b3"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/WhatsApp_Image_2026-07-30_at_6.46.05_PM.jpg",
+        "eyebrow": "Beauty That Lasts Forever",
+        "heading": "TIMELESS",
+        "heading_accent": "ELEGANCE",
         "subtext": "Discover the perfect blend of luxury and craftsmanship. Jewelry that tells your story.",
-        "button_label": "Shop Collection", "button_link": "/collections/all",
-        "button_2_label": "Explore More", "button_2_link": "/pages/about", "video_link": "https://www.youtube.com" } },
-    "features": { "type": "features-grid", "blocks": {
-        "f1": { "type": "feature", "settings": { "icon": "truck", "title": "Free Shipping", "text": "Free worldwide shipping" } },
-        "f2": { "type": "feature", "settings": { "icon": "return", "title": "30 Days Returns", "text": "Easy returns & exchanges" } },
-        "f3": { "type": "feature", "settings": { "icon": "support", "title": "24/7 Customer Support", "text": "We are here to help you" } },
-        "f4": { "type": "feature", "settings": { "icon": "lock", "title": "Secure Payment", "text": "100% secure payment" } }
-      }, "block_order": ["f1","f2","f3","f4"], "settings": {} },
-    "featured": { "type": "featured-products", "settings": { "eyebrow": "Our Collections", "heading": "EXQUISITE COLLECTIONS", "products_to_show": 5, "button_label": "View All Collections", "button_link": "/collections/all" } },
-    "promo": { "type": "promo-banners", "blocks": {
-        "p1": { "type": "banner", "settings": { "eyebrow": "New Arrivals", "heading": "JUST FOR YOU", "text": "Explore our latest designs", "button_label": "Shop Now", "button_link": "/collections/all" } },
-        "p2": { "type": "banner", "settings": { "eyebrow": "Made With Perfection", "heading": "CRAFTED TO PERFECTION", "text": "Detail that defines beauty", "button_label": "Discover More", "button_link": "/pages/about" } },
-        "p3": { "type": "banner", "settings": { "eyebrow": "Limited Time Offer", "heading": "UP TO 30% OFF", "text": "On selected items only", "button_label": "Shop Sale", "button_link": "/collections/all" } }
-      }, "block_order": ["p1","p2","p3"], "settings": {} },
-    "stats": { "type": "stats", "blocks": {
-        "s1": { "type": "stat", "settings": { "icon": "items", "number": "15K+", "label": "Items completed" } },
-        "s2": { "type": "stat", "settings": { "icon": "customers", "number": "25K+", "label": "Happy Customer" } },
-        "s3": { "type": "stat", "settings": { "icon": "rating", "number": "4.9", "label": "Average Rating" } },
-        "s4": { "type": "stat", "settings": { "icon": "guarantee", "number": "100%", "label": "Money back" } }
-      }, "block_order": ["s1","s2","s3","s4"],
-      "settings": { "eyebrow": "Our Clients Love Us", "heading": "EXCEPTIONAL ELEGANCE", "subtext": "Luxora's dedication to quality sets a new standard for jewelry excellence. Renowned for our craftsmanship, every piece exemplifies refined elegance and lasting value." } },
-    "testimonials": { "type": "testimonials", "blocks": {
-        "t1": { "type": "testimonial", "settings": { "name": "Sophia Williams", "role": "Verified Buyer", "quote": "The quality and brilliance of the jewelry I received is beyond my expectations. Absolutely stunning." } },
-        "t2": { "type": "testimonial", "settings": { "name": "Amelia Carter", "role": "Verified Buyer", "quote": "My engagement ring is perfect. The packaging alone felt like a gift in itself." } },
-        "t3": { "type": "testimonial", "settings": { "name": "Isabella Moore", "role": "Verified Buyer", "quote": "Fast worldwide delivery and flawless craftsmanship. I will absolutely order again." } },
-        "t4": { "type": "testimonial", "settings": { "name": "Charlotte Reed", "role": "Verified Buyer", "quote": "Timeless design that gets compliments every single day. Worth every penny." } }
-      }, "block_order": ["t1","t2","t3","t4"], "settings": {} },
-    "about": { "type": "about-story", "settings": {} },
-    "newsletter": { "type": "newsletter", "settings": {} }
+        "button_label": "Shop Collection",
+        "button_link": "/collections/all",
+        "button_2_label": "Explore More",
+        "button_2_link": "/pages/about",
+        "video_link": "https://www.youtube.com"
+      }
+    },
+    "features": {
+      "type": "features-grid",
+      "blocks": {
+        "f1": {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "Free Shipping",
+            "text": "Free worldwide shipping"
+          }
+        },
+        "f2": {
+          "type": "feature",
+          "settings": {
+            "icon": "return",
+            "title": "30 Days Returns",
+            "text": "Easy returns & exchanges"
+          }
+        },
+        "f3": {
+          "type": "feature",
+          "settings": {
+            "icon": "support",
+            "title": "24/7 Customer Support",
+            "text": "We are here to help you"
+          }
+        },
+        "f4": {
+          "type": "feature",
+          "settings": {
+            "icon": "lock",
+            "title": "Secure Payment",
+            "text": "100% secure payment"
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-products",
+      "settings": {
+        "eyebrow": "Our Collections",
+        "heading": "EXQUISITE COLLECTIONS",
+        "collection": "",
+        "products_to_show": 5,
+        "button_label": "View All Collections",
+        "button_link": "/collections/all"
+      }
+    },
+    "promo": {
+      "type": "promo-banners",
+      "blocks": {
+        "p1": {
+          "type": "banner",
+          "settings": {
+            "eyebrow": "New Arrivals",
+            "heading": "JUST FOR YOU",
+            "text": "Explore our latest designs",
+            "button_label": "Shop Now",
+            "button_link": "/collections/all"
+          }
+        },
+        "p2": {
+          "type": "banner",
+          "settings": {
+            "eyebrow": "Made With Perfection",
+            "heading": "CRAFTED TO PERFECTION",
+            "text": "Detail that defines beauty",
+            "button_label": "Discover More",
+            "button_link": "/pages/about"
+          }
+        },
+        "p3": {
+          "type": "banner",
+          "settings": {
+            "eyebrow": "Limited Time Offer",
+            "heading": "UP TO 30% OFF",
+            "text": "On selected items only",
+            "button_label": "Shop Sale",
+            "button_link": "/collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
+      "settings": {}
+    },
+    "stats": {
+      "type": "stats",
+      "blocks": {
+        "s1": {
+          "type": "stat",
+          "settings": {
+            "icon": "items",
+            "number": "15K+",
+            "label": "Items completed"
+          }
+        },
+        "s2": {
+          "type": "stat",
+          "settings": {
+            "icon": "customers",
+            "number": "25K+",
+            "label": "Happy Customer"
+          }
+        },
+        "s3": {
+          "type": "stat",
+          "settings": {
+            "icon": "rating",
+            "number": "4.9",
+            "label": "Average Rating"
+          }
+        },
+        "s4": {
+          "type": "stat",
+          "settings": {
+            "icon": "guarantee",
+            "number": "100%",
+            "label": "Money back"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "eyebrow": "Our Clients Love Us",
+        "heading": "EXCEPTIONAL ELEGANCE",
+        "subtext": "Luxora's dedication to quality sets a new standard for jewelry excellence. Renowned for our craftsmanship, every piece exemplifies refined elegance and lasting value."
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The quality and brilliance of the jewelry I received is beyond my expectations. Absolutely stunning.",
+            "name": "Sophia Williams",
+            "role": "Verified Buyer"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "My engagement ring is perfect. The packaging alone felt like a gift in itself.",
+            "name": "Amelia Carter",
+            "role": "Verified Buyer"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Fast worldwide delivery and flawless craftsmanship. I will absolutely order again.",
+            "name": "Isabella Moore",
+            "role": "Verified Buyer"
+          }
+        },
+        "t4": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Timeless design that gets compliments every single day. Worth every penny.",
+            "name": "Charlotte Reed",
+            "role": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "eyebrow": "Our Clients Love Us",
+        "heading": "EXCEPTIONAL ELEGANCE",
+        "subtext": "Thousands of clients trust LUXORA for life's most meaningful moments.",
+        "stat_1": "15K+",
+        "stat_label_1": "Happy Customers",
+        "stat_2": "25K+",
+        "stat_label_2": "Orders Delivered",
+        "stat_3": "4.9",
+        "stat_label_3": "Average Rating",
+        "stat_4": "100%",
+        "stat_label_4": "Secure Payment"
+      }
+    },
+    "about": {
+      "type": "about-story",
+      "settings": {
+        "eyebrow": "Made With Perfection",
+        "heading": "EXPLORE MORE",
+        "text": "<p>Since our first workshop, LUXORA has crafted jewelry designed to outlive trends. Every stone is ethically sourced, every setting finished by hand.</p>",
+        "button_label": "Discover Our Story",
+        "button_link": "",
+        "video_link": ""
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join Our Exclusive Club",
+        "text": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",
+        "placeholder": "Enter your email address",
+        "button_label": "Subscribe"
+      }
+    }
   },
-  "order": ["hero","features","featured","promo","stats","testimonials","about","newsletter"]
+  "order": [
+    "hero",
+    "features",
+    "featured",
+    "promo",
+    "stats",
+    "testimonials",
+    "about",
+    "newsletter"
+  ]
 }
