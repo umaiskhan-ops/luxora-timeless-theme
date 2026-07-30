@@ -2,6 +2,16 @@
   <div class="container-lux flex items-center justify-center gap-2 py-2.5 text-center">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     <p class="text-[11px] font-medium uppercase tracking-[.22em]">{{ section.settings.text }}</p>
+    {%- if section.blocks.size > 0 -%}
+      <span class="mx-3 text-gold">|</span>
+      <div class="flex items-center gap-4">
+        {%- for block in section.blocks -%}
+          <a href="{{ block.settings.link }}" class="text-[11px] font-medium uppercase tracking-[.18em] transition-colors hover:text-gold" {{ block.shopify_attributes }}>
+            {{ block.settings.label }}
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </div>
 </div>
 {% schema %}
@@ -9,6 +19,25 @@
   "name": "Announcement bar",
   "settings": [
     { "type": "text", "id": "text", "label": "Text", "default": "Free express shipping worldwide on all orders over $199" }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "limit": 3,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Home" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Announcement bar",
+    "blocks": [
+      { "type": "link", "settings": { "label": "Home", "link": "/" } },
+      { "type": "link", "settings": { "label": "Catalog", "link": "/collections/all" } },
+      { "type": "link", "settings": { "label": "Contact", "link": "/pages/contact" } }
+    ]
+  }]
 }
 {% endschema %}
