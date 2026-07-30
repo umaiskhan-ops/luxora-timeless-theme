@@ -1,9 +1,7 @@
 <section class="hero relative">
   <style>
-    .hero .container-lux { padding-left: 3rem !important; }
-    @media (min-width: 1024px) {
-      .hero .container-lux { padding-left: 5rem !important; }
-    }
+    .hero .container-lux { display: flex; justify-content: flex-start; }
+    .hero .max-w-xl { margin-left: 0 !important; margin-right: auto !important; }
   </style>
   <div class="hero__media">
     {%- if section.settings.image -%}
