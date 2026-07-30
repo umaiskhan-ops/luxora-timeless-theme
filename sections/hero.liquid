@@ -1,7 +1,9 @@
 <section class="hero relative">
   <style>
-    .hero .container-lux { padding-left: 1.25rem !important; padding-right: 1.25rem !important; max-width: 1320px; margin: 0 auto; }
-    .hero .max-w-xl { max-width: 36rem; }
+    @media (min-width: 1024px) {
+      .hero .container-lux { padding-left: 3rem !important; }
+      .hero .max-w-xl { max-width: 500px; }
+    }
   </style>
   <div class="hero__media">
     {%- if section.settings.image -%}
