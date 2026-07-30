@@ -8,7 +8,7 @@
       "settings": { "eyebrow": "Beauty That Lasts Forever", "heading": "TIMELESS", "heading_accent": "ELEGANCE",
         "subtext": "Discover the perfect blend of luxury and craftsmanship. Jewelry that tells your story.",
         "button_label": "Shop Collection", "button_link": "/collections/all",
-        "button_2_label": "Explore More", "button_2_link": "/pages/about" } },
+        "button_2_label": "Explore More", "button_2_link": "/pages/about", "video_link": "https://www.youtube.com" } },
     "features": { "type": "features-grid", "blocks": {
         "f1": { "type": "feature", "settings": { "icon": "truck", "title": "Free Shipping", "text": "Free worldwide shipping" } },
         "f2": { "type": "feature", "settings": { "icon": "return", "title": "30 Days Returns", "text": "Easy returns & exchanges" } },
@@ -21,6 +21,13 @@
         "p2": { "type": "banner", "settings": { "eyebrow": "Made With Perfection", "heading": "CRAFTED TO PERFECTION", "text": "Detail that defines beauty", "button_label": "Discover More", "button_link": "/pages/about" } },
         "p3": { "type": "banner", "settings": { "eyebrow": "Limited Time Offer", "heading": "UP TO 30% OFF", "text": "On selected items only", "button_label": "Shop Sale", "button_link": "/collections/all" } }
       }, "block_order": ["p1","p2","p3"], "settings": {} },
+    "stats": { "type": "stats", "blocks": {
+        "s1": { "type": "stat", "settings": { "icon": "items", "number": "15K+", "label": "Items completed" } },
+        "s2": { "type": "stat", "settings": { "icon": "customers", "number": "25K+", "label": "Happy Customer" } },
+        "s3": { "type": "stat", "settings": { "icon": "rating", "number": "4.9", "label": "Average Rating" } },
+        "s4": { "type": "stat", "settings": { "icon": "guarantee", "number": "100%", "label": "Money back" } }
+      }, "block_order": ["s1","s2","s3","s4"],
+      "settings": { "eyebrow": "Our Clients Love Us", "heading": "EXCEPTIONAL ELEGANCE", "subtext": "Luxora's dedication to quality sets a new standard for jewelry excellence. Renowned for our craftsmanship, every piece exemplifies refined elegance and lasting value." } },
     "testimonials": { "type": "testimonials", "blocks": {
         "t1": { "type": "testimonial", "settings": { "name": "Sophia Williams", "role": "Verified Buyer", "quote": "The quality and brilliance of the jewelry I received is beyond my expectations. Absolutely stunning." } },
         "t2": { "type": "testimonial", "settings": { "name": "Amelia Carter", "role": "Verified Buyer", "quote": "My engagement ring is perfect. The packaging alone felt like a gift in itself." } },
@@ -30,5 +37,5 @@
     "about": { "type": "about-story", "settings": {} },
     "newsletter": { "type": "newsletter", "settings": {} }
   },
-  "order": ["hero","features","featured","promo","testimonials","about","newsletter"]
+  "order": ["hero","features","featured","promo","stats","testimonials","about","newsletter"]
 }
