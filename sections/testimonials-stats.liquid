@@ -22,7 +22,7 @@
                 <p class="text-white/90 text-sm leading-relaxed mb-3">{{ featured.settings.quote | default: "The craftsmanship is a symbol of true beauty. I received is beyond my expectations. Absolutely stunning!" }}</p>
                 <div class="flex items-center gap-3">
                   {%- if featured.settings.image -%}
-                    <img src="{{ featured.settings.image | image_url: width: 80 }}" alt="{{ featured.settings.name }}" class="testimonial-avatar">
+                    <img src="{{ featured.settings.image | image_url: width: 80 }}" alt="{{ featured.settings.name }}" class="testimonial-avatar" width="48" height="48" loading="lazy">
                   {%- else -%}
                     <div class="testimonial-avatar" style="background: linear-gradient(135deg, #e8cd7a, #d4af37);"></div>
                   {%- endif -%}
@@ -81,9 +81,9 @@
         <!-- Large Diamond Background Image (Center) -->
         <div class="diamond-bg-image">
           {%- if section.settings.diamond_image -%}
-            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" loading="lazy">
+            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" width="280" height="280" loading="lazy">
           {%- else -%}
-            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" width="280" height="280" loading="lazy">
           {%- endif -%}
         </div>
         
@@ -91,31 +91,31 @@
         <div class="showcase-products-grid">
           {%- if section.settings.product_1 -%}
             <div class="showcase-product showcase-product-1">
-              <img src="{{ section.settings.product_1 | image_url: width: 400 }}" alt="Product 1" loading="lazy">
+              <img src="{{ section.settings.product_1 | image_url: width: 400 }}" alt="Product 1" width="400" height="400" loading="lazy">
             </div>
           {%- else -%}
             <div class="showcase-product showcase-product-1">
-              <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="Ring" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="Ring" width="400" height="400" loading="lazy">
             </div>
           {%- endif -%}
           
           {%- if section.settings.product_2 -%}
             <div class="showcase-product showcase-product-2">
-              <img src="{{ section.settings.product_2 | image_url: width: 400 }}" alt="Product 2" loading="lazy">
+              <img src="{{ section.settings.product_2 | image_url: width: 400 }}" alt="Product 2" width="400" height="400" loading="lazy">
             </div>
           {%- else -%}
             <div class="showcase-product showcase-product-2">
-              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Necklace" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Necklace" width="400" height="400" loading="lazy">
             </div>
           {%- endif -%}
           
           {%- if section.settings.product_3 -%}
             <div class="showcase-product showcase-product-3">
-              <img src="{{ section.settings.product_3 | image_url: width: 400 }}" alt="Product 3" loading="lazy">
+              <img src="{{ section.settings.product_3 | image_url: width: 400 }}" alt="Product 3" width="400" height="400" loading="lazy">
             </div>
           {%- else -%}
             <div class="showcase-product showcase-product-3">
-              <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Ring Set" loading="lazy">
+              <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Ring Set" width="400" height="400" loading="lazy">
             </div>
           {%- endif -%}
           
