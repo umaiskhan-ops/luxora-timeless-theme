@@ -135,6 +135,7 @@
         "p3": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_02_14_54_PM.png",
             "eyebrow": "Limited Time Offer",
             "heading": "UP TO 30% OFF",
             "text": "On selected items only",
