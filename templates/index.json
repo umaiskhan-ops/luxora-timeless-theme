@@ -162,15 +162,6 @@
         "video_link": ""
       }
     },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Join Our Exclusive Club",
-        "text": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",
-        "placeholder": "Enter your email address",
-        "button_label": "Subscribe"
-      }
-    },
     "testimonials_stats_wyaLUH": {
       "type": "testimonials-stats",
       "blocks": {
@@ -227,6 +218,15 @@
         "heading": "EXCEPTIONAL ELEGANCE",
         "product_1": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_03_31_58_PM.png"
       }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join Our Exclusive Club",
+        "text": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",
+        "placeholder": "Enter your email address",
+        "button_label": "Subscribe"
+      }
     }
   },
   "order": [
@@ -235,7 +235,7 @@
     "featured",
     "promo",
     "about",
-    "newsletter",
-    "testimonials_stats_wyaLUH"
+    "testimonials_stats_wyaLUH",
+    "newsletter"
   ]
 }
