@@ -88,7 +88,6 @@
   object-fit: cover;
   object-position: center;
   transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
-  filter: brightness(1.15) contrast(1.05);
 }
 
 .category-banner-card:hover .category-banner-img {
@@ -112,7 +111,7 @@
   padding: 32px;
   z-index: 2;
   color: #fff;
-  background: linear-gradient(90deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 35%, transparent 60%);
+  background: transparent;
 }
 
 .category-banner-eyebrow {
@@ -123,6 +122,7 @@
   color: #d4af37;
   margin-bottom: 8px;
   opacity: 0.9;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,1);
 }
 
 .category-banner-title {
@@ -134,15 +134,16 @@
   text-transform: uppercase;
   color: #ffffff;
   margin-bottom: 12px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 4px rgba(0,0,0,1);
 }
 
 .category-banner-text {
   font-size: 13px;
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 20px;
   max-width: 90%;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.9), 0 1px 3px rgba(0,0,0,1);
 }
 
 .btn-category-gold {
