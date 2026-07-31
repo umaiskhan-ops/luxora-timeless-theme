@@ -153,47 +153,6 @@
     },
     "testimonials": {
       "type": "testimonials",
-      "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The quality and brilliance of the jewelry I received is beyond my expectations. Absolutely stunning.",
-            "name": "Sophia Williams",
-            "role": "Verified Buyer",
-            "avatar": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_02_18_19_PM.png"
-          }
-        },
-        "t2": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "My engagement ring is perfect. The packaging alone felt like a gift in itself.",
-            "name": "Amelia Carter",
-            "role": "Verified Buyer"
-          }
-        },
-        "t3": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Fast worldwide delivery and flawless craftsmanship. I will absolutely order again.",
-            "name": "Isabella Moore",
-            "role": "Verified Buyer"
-          }
-        },
-        "t4": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "Timeless design that gets compliments every single day. Worth every penny.",
-            "name": "Charlotte Reed",
-            "role": "Verified Buyer"
-          }
-        }
-      },
-      "block_order": [
-        "t1",
-        "t2",
-        "t3",
-        "t4"
-      ],
       "settings": {
         "eyebrow": "Our Clients Love Us",
         "heading": "EXCEPTIONAL ELEGANCE",
