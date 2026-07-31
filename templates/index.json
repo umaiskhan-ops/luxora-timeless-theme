@@ -186,6 +186,62 @@
         "placeholder": "Enter your email address",
         "button_label": "Subscribe"
       }
+    },
+    "testimonials_stats_ErXcmf": {
+      "type": "testimonials-stats",
+      "blocks": {
+        "testimonial_DNFMVe": {
+          "type": "testimonial",
+          "settings": {
+            "name": "Sophia Williams",
+            "quote": "The craftsmanship is a symbol of true beauty. I received is beyond my expectations. Absolutely stunning!"
+          }
+        },
+        "stat_hXD4nW": {
+          "type": "stat",
+          "settings": {
+            "icon": "customers",
+            "value": "15K+",
+            "label": "Happy Customers"
+          }
+        },
+        "stat_TMLFLK": {
+          "type": "stat",
+          "settings": {
+            "icon": "orders",
+            "value": "25K+",
+            "label": "Orders Delivered"
+          }
+        },
+        "stat_3F9Nqe": {
+          "type": "stat",
+          "settings": {
+            "icon": "rating",
+            "value": "4.9",
+            "label": "Average Rating"
+          }
+        },
+        "stat_cFx7WA": {
+          "type": "stat",
+          "settings": {
+            "icon": "payment",
+            "value": "100%",
+            "label": "Secure Payment"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_DNFMVe",
+        "stat_hXD4nW",
+        "stat_TMLFLK",
+        "stat_3F9Nqe",
+        "stat_cFx7WA"
+      ],
+      "name": "Testimonials + Stats",
+      "settings": {
+        "eyebrow": "OUR CLIENTS LOVE US",
+        "heading": "EXCEPTIONAL ELEGANCE"
+      }
     }
   },
   "order": [
@@ -195,6 +251,7 @@
     "promo",
     "testimonials",
     "about",
-    "newsletter"
+    "newsletter",
+    "testimonials_stats_ErXcmf"
   ]
 }
