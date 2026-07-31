@@ -1,5 +1,5 @@
 {%- assign fp_collection = collections[section.settings.collection] -%}
-<section class="bg-navy py-20 text-white">
+<section class="py-20 text-white" style="background-color: #000000;">
   <div class="container-lux">
     <div class="text-center">
       <p class="eyebrow">{{ section.settings.eyebrow }}</p>
@@ -9,31 +9,275 @@
       </div>
     </div>
 
-    <div class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-5">
-      {%- if fp_collection.products.size > 0 -%}
-        {%- for product in fp_collection.products limit: section.settings.products_to_show -%}
-          {% render 'product-card', product: product %}
-        {%- endfor -%}
-      {%- else -%}
-        {%- for i in (1..5) -%}
-          <div class="product-card">
-            <div class="product-card__media">{{ 'product-' | append: i | placeholder_svg_tag: 'w-full h-full object-cover' }}</div>
-            <div class="p-4">
-              <h3 class="font-display text-[15px] text-white">Example Product {{ i }}</h3>
-              <p class="mt-1 text-sm text-gold">$0.00</p>
+    <!-- Carousel Container -->
+    <div class="relative mt-12">
+      <!-- Left Arrow -->
+      <button class="carousel-arrow carousel-arrow-left" onclick="scrollCarousel('left')" aria-label="Previous products">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+
+      <!-- Products Carousel -->
+      <div id="productsCarousel" class="carousel-track flex gap-4 overflow-x-auto scroll-smooth pb-4" style="scrollbar-width: none; -ms-overflow-style: none;">
+        {%- if fp_collection.products.size > 0 -%}
+          {%- for product in fp_collection.products limit: section.settings.products_to_show -%}
+            <div class="carousel-item flex-shrink-0 w-[280px]">
+              <div class="product-card-luxury">
+                <!-- NEW Badge -->
+                {%- if product.tags contains 'new' -%}
+                  <span class="product-badge-new">NEW</span>
+                {%- endif -%}
+                
+                <!-- Wishlist Heart -->
+                <button class="product-wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </button>
+
+                <!-- Product Image -->
+                <a href="{{ product.url }}" class="product-card__media block">
+                  {%- if product.featured_image -%}
+                    <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy" class="w-full h-full object-cover">
+                  {%- else -%}
+                    {{ 'product-1' | placeholder_svg_tag: 'w-full h-full object-cover' }}
+                  {%- endif -%}
+                </a>
+
+                <!-- Product Info -->
+                <div class="p-4 text-center">
+                  <h3 class="font-display text-[15px] text-white mb-2">{{ product.title }}</h3>
+                  <p class="text-sm text-gold mb-2">{{ product.price | money }}</p>
+                  
+                  <!-- Star Rating -->
+                  <div class="flex items-center justify-center gap-1 mb-1">
+                    {%- for i in (1..5) -%}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4af37" stroke="#d4af37" stroke-width="1">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    {%- endfor -%}
+                  </div>
+                  <p class="text-[11px] text-white/50">({{ product.metafields.reviews.count | default: 128 }})</p>
+                </div>
+              </div>
             </div>
-          </div>
-        {%- endfor -%}
-      {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {%- assign sample_products = "Diamond Pendant,Golden Majesty Ring,Royal Diamond Earrings,Luxury Tennis Bracelet,Pearl Elegance Necklace" | split: ',' -%}
+          {%- assign sample_prices = "$885.00,$1,299.00,$1,199.00,$1,499.00,$949.00" | split: ',' -%}
+          {%- assign sample_reviews = "298,96,78,89,54" | split: ',' -%}
+          {%- for i in (1..5) -%}
+            <div class="carousel-item flex-shrink-0 w-[280px]">
+              <div class="product-card-luxury">
+                <span class="product-badge-new">NEW</span>
+                <button class="product-wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to wishlist">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  </svg>
+                </button>
+                <div class="product-card__media">
+                  {{ 'product-' | append: i | placeholder_svg_tag: 'w-full h-full object-cover' }}
+                </div>
+                <div class="p-4 text-center">
+                  <h3 class="font-display text-[15px] text-white mb-2">{{ sample_products[forloop.index0] }}</h3>
+                  <p class="text-sm text-gold mb-2">{{ sample_prices[forloop.index0] }}</p>
+                  <div class="flex items-center justify-center gap-1 mb-1">
+                    {%- for j in (1..5) -%}
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4af37" stroke="#d4af37" stroke-width="1">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    {%- endfor -%}
+                  </div>
+                  <p class="text-[11px] text-white/50">({{ sample_reviews[forloop.index0] }})</p>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <!-- Right Arrow -->
+      <button class="carousel-arrow carousel-arrow-right" onclick="scrollCarousel('right')" aria-label="Next products">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
     </div>
 
     {%- if section.settings.button_label != blank -%}
       <div class="mt-12 text-center">
-        <a href="{{ section.settings.button_link | default: fp_collection.url }}" class="btn btn-outline">{{ section.settings.button_label }}</a>
+        <a href="{{ section.settings.button_link | default: fp_collection.url }}" class="btn btn-gold-luxury">{{ section.settings.button_label }}</a>
       </div>
     {%- endif -%}
   </div>
 </section>
+
+<script>
+function scrollCarousel(direction) {
+  const carousel = document.getElementById('productsCarousel');
+  const scrollAmount = 300;
+  if (direction === 'left') {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
+function toggleWishlist(btn) {
+  const svg = btn.querySelector('svg');
+  const path = svg.querySelector('path');
+  const currentFill = svg.getAttribute('fill');
+  
+  if (currentFill === 'none') {
+    svg.setAttribute('fill', '#d4af37');
+    btn.classList.add('is-active');
+  } else {
+    svg.setAttribute('fill', 'none');
+    btn.classList.remove('is-active');
+  }
+}
+</script>
+
+<style>
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.product-card-luxury {
+  position: relative;
+  background: #0a0a0a;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.product-card-luxury:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 0 0 1px rgba(212,175,55,.5), 0 18px 40px -18px rgba(212,175,55,.45);
+}
+
+.product-badge-new {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(135deg, #e8cd7a, #d4af37 45%, #b8952c);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  z-index: 10;
+  border-radius: 2px;
+}
+
+.product-wishlist-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.product-wishlist-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #d4af37;
+  transform: scale(1.1);
+}
+
+.product-wishlist-btn svg {
+  stroke: #d4af37;
+  transition: all 0.3s ease;
+}
+
+.product-wishlist-btn.is-active svg {
+  fill: #d4af37;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 20;
+}
+
+.carousel-arrow:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: #d4af37;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow svg {
+  stroke: #d4af37;
+}
+
+.carousel-arrow-left {
+  left: -20px;
+}
+
+.carousel-arrow-right {
+  right: -20px;
+}
+
+.btn-gold-luxury {
+  background: linear-gradient(135deg, #e8cd7a, #d4af37 45%, #b8952c);
+  color: #fff;
+  padding: 12px 32px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -12px rgba(212, 175, 55, 0.8);
+}
+
+.btn-gold-luxury:hover {
+  filter: brightness(0.94);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -14px rgba(212, 175, 55, 0.9);
+}
+
+@media (max-width: 767px) {
+  .carousel-arrow-left {
+    left: -10px;
+  }
+  .carousel-arrow-right {
+    right: -10px;
+  }
+  .carousel-item {
+    width: 240px !important;
+  }
+}
+</style>
 
 {% schema %}
 {
