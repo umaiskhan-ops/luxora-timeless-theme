@@ -1,0 +1,198 @@
+<section class="py-20" style="background-color: #000000; border-top: 1px solid #d4af37; border-bottom: 1px solid #d4af37;">
+  <div class="container-lux">
+    
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <p class="eyebrow mb-3">{{ section.settings.eyebrow | default: "OUR CLIENTS LOVE US" }}</p>
+      <h2 class="section-title text-white mb-4">{{ section.settings.heading | default: "EXCEPTIONAL ELEGANCE" }}</h2>
+      {%- if section.settings.description != blank -%}
+        <p class="text-white/70 text-sm max-w-2xl mx-auto leading-relaxed">{{ section.settings.description }}</p>
+      {%- else -%}
+        <p class="text-white/70 text-sm max-w-2xl mx-auto leading-relaxed">Luxora's dedication to quality sets a new standard for jewelry excellence. Renowned for our craftsmanship, every piece exemplifies refined elegance and lasting value.</p>
+      {%- endif -%}
+    </div>
+    
+    <!-- Stats Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 max-w-5xl mx-auto">
+      {%- for block in section.blocks -%}
+        <div class="stat-item-centered text-center" {{ block.shopify_attributes }}>
+          <!-- Icon -->
+          <div class="stat-icon-circle mx-auto mb-6">
+            {%- case block.settings.icon -%}
+              {%- when 'items' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                  <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                </svg>
+              {%- when 'customers' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              {%- when 'rating' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              {%- when 'guarantee' -%}
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
+                </svg>
+            {%- endcase -%}
+          </div>
+          
+          <!-- Value -->
+          <p class="stat-value-large text-gold mb-2">{{ block.settings.value | default: "15K+" }}</p>
+          
+          <!-- Label -->
+          <p class="stat-label-centered text-white/60 text-xs uppercase tracking-widest">{{ block.settings.label | default: "ITEMS COMPLETED" }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+    
+  </div>
+</section>
+
+<style>
+.stat-icon-circle {
+  width: 80px;
+  height: 80px;
+  background: transparent;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.stat-item-centered:hover .stat-icon-circle {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.6);
+  transform: scale(1.05);
+}
+
+.stat-value-large {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #d4af37;
+}
+
+.stat-label-centered {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .stat-icon-circle {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .stat-icon-circle svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .stat-value-large {
+    font-size: 1.8rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Stats Centered",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "OUR CLIENTS LOVE US"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "EXCEPTIONAL ELEGANCE"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Luxora's dedication to quality sets a new standard for jewelry excellence. Renowned for our craftsmanship, every piece exemplifies refined elegance and lasting value."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "default": "items",
+          "options": [
+            { "value": "items", "label": "Items/Products" },
+            { "value": "customers", "label": "Customers" },
+            { "value": "rating", "label": "Rating/Star" },
+            { "value": "guarantee", "label": "Guarantee/Shield" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "15K+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "ITEMS COMPLETED"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stats Centered",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "items",
+            "value": "15K+",
+            "label": "ITEMS COMPLETED"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "customers",
+            "value": "25K+",
+            "label": "HAPPY CUSTOMER"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "rating",
+            "value": "4.9",
+            "label": "AVERAGE RATING"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "icon": "guarantee",
+            "value": "100%",
+            "label": "MONEY BACK"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
