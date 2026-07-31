@@ -151,54 +151,6 @@
       ],
       "settings": {}
     },
-    "stats": {
-      "type": "stats",
-      "blocks": {
-        "s1": {
-          "type": "stat",
-          "settings": {
-            "icon": "items",
-            "number": "15K+",
-            "label": "Items completed"
-          }
-        },
-        "s2": {
-          "type": "stat",
-          "settings": {
-            "icon": "customers",
-            "number": "25K+",
-            "label": "Happy Customer"
-          }
-        },
-        "s3": {
-          "type": "stat",
-          "settings": {
-            "icon": "rating",
-            "number": "4.9",
-            "label": "Average Rating"
-          }
-        },
-        "s4": {
-          "type": "stat",
-          "settings": {
-            "icon": "guarantee",
-            "number": "100%",
-            "label": "Money back"
-          }
-        }
-      },
-      "block_order": [
-        "s1",
-        "s2",
-        "s3",
-        "s4"
-      ],
-      "settings": {
-        "eyebrow": "Our Clients Love Us",
-        "heading": "EXCEPTIONAL ELEGANCE",
-        "subtext": "Luxora's dedication to quality sets a new standard for jewelry excellence. Renowned for our craftsmanship, every piece exemplifies refined elegance and lasting value."
-      }
-    },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
@@ -281,7 +233,6 @@
     "features",
     "featured",
     "promo",
-    "stats",
     "testimonials",
     "about",
     "newsletter"
