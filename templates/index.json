@@ -153,19 +153,6 @@
     },
     "testimonials": {
       "type": "testimonials",
-      "blocks": {
-        "testimonial_KtLj3b": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "The quality and brilliance of the jewelry I received is beyond my expectations. Absolutely stunning.",
-            "name": "Sophia Williams",
-            "role": "Verified Buyer"
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_KtLj3b"
-      ],
       "settings": {
         "eyebrow": "Our Clients Love Us",
         "heading": "EXCEPTIONAL ELEGANCE",
