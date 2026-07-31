@@ -81,9 +81,9 @@
         <!-- Large Diamond Background Image (Center) -->
         <div class="diamond-bg-image">
           {%- if section.settings.diamond_image -%}
-            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" width="280" height="280" loading="lazy">
+            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" width="350" height="350" loading="lazy">
           {%- else -%}
-            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" width="280" height="280" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" width="350" height="350" loading="lazy">
           {%- endif -%}
         </div>
         
@@ -191,17 +191,18 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  height: 280px;
+  width: 350px;
+  height: 350px;
   z-index: 0;
-  opacity: 0.4;
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .diamond-bg-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: brightness(0.7);
+  filter: brightness(1.1);
 }
 
 .showcase-products-grid {
@@ -211,7 +212,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 16px;
-  z-index: 1;
+  z-index: 2;
 }
 
 .showcase-product {
