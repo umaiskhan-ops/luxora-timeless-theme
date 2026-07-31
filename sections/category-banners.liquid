@@ -1,6 +1,6 @@
-<section class="py-16" style="background-color: #000000;">
+<section class="py-16" style="background-color: #000000; border-top: 1px solid #d4af37; border-bottom: 1px solid #d4af37;">
   <div class="container-lux">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 category-banners-grid">
       
       <!-- Banner 1: NEW ARRIVALS -->
       <div class="category-banner-card">
@@ -61,6 +61,15 @@
 </section>
 
 <style>
+.category-banners-grid {
+  gap: 1px;
+  background: #d4af37;
+}
+
+.category-banners-grid > * {
+  background: #000000;
+}
+
 .category-banner-card {
   position: relative;
   height: 420px;
