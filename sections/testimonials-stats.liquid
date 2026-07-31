@@ -77,10 +77,17 @@
       
       <!-- Right Side: Product Showcase -->
       <div class="product-showcase-side relative" style="padding: 48px 40px; min-height: 500px;">
-        <!-- Diamond Background (decorative) -->
-        <div class="showcase-diamond-bg"></div>
         
-        <!-- Product Images Grid -->
+        <!-- Large Diamond Background Image (Center) -->
+        <div class="diamond-bg-image">
+          {%- if section.settings.diamond_image -%}
+            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" loading="lazy">
+          {%- else -%}
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" loading="lazy">
+          {%- endif -%}
+        </div>
+        
+        <!-- Product Images Grid (Overlaid) -->
         <div class="showcase-products-grid">
           {%- if section.settings.product_1 -%}
             <div class="showcase-product showcase-product-1">
@@ -179,6 +186,24 @@
   pointer-events: none;
 }
 
+.diamond-bg-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.diamond-bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0.7);
+}
+
 .showcase-products-grid {
   position: relative;
   height: 100%;
@@ -261,6 +286,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "OUR CLIENTS LOVE US" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "EXCEPTIONAL ELEGANCE" },
+    { "type": "image_picker", "id": "diamond_image", "label": "Diamond Background Image (Center)" },
     { "type": "image_picker", "id": "product_1", "label": "Product Image 1 (Large)" },
     { "type": "image_picker", "id": "product_2", "label": "Product Image 2 (Top Right)" },
     { "type": "image_picker", "id": "product_3", "label": "Product Image 3 (Bottom Right)" }
