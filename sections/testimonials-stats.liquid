@@ -3,15 +3,25 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
       
       <!-- Left Side: Testimonials + Stats -->
-      <div class="testimonial-side" style="border-right: 1px solid #d4af37; padding: 48px 40px;">
+      <div class="testimonial-side" style="border-right: 1px solid #d4af37; padding: 48px 40px; position: relative;">
+        
+        <!-- Large Diamond Background Image (Center of Left Side) -->
+        <div class="diamond-bg-image">
+          {%- if section.settings.diamond_image -%}
+            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" width="350" height="350" loading="lazy">
+          {%- else -%}
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" width="350" height="350" loading="lazy">
+          {%- endif -%}
+        </div>
+        
         <!-- Header -->
-        <p class="eyebrow mb-3">{{ section.settings.eyebrow | default: "OUR CLIENTS LOVE US" }}</p>
-        <h2 class="section-title text-white mb-6">{{ section.settings.heading | default: "EXCEPTIONAL ELEGANCE" }}</h2>
+        <p class="eyebrow mb-3" style="position: relative; z-index: 10;">{{ section.settings.eyebrow | default: "OUR CLIENTS LOVE US" }}</p>
+        <h2 class="section-title text-white mb-6" style="position: relative; z-index: 10;">{{ section.settings.heading | default: "EXCEPTIONAL ELEGANCE" }}</h2>
         
         <!-- Featured Testimonial -->
         {%- if section.blocks.size > 0 -%}
           {%- assign featured = section.blocks[0] -%}
-          <div class="testimonial-featured mb-8">
+          <div class="testimonial-featured mb-8" style="position: relative; z-index: 10;">
             <div class="flex items-start gap-3 mb-4">
               <div class="testimonial-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#d4af37">
@@ -43,7 +53,7 @@
         {%- endif -%}
         
         <!-- Stats Grid -->
-        <div class="stats-grid grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+        <div class="stats-grid grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12" style="position: relative; z-index: 10;">
           {%- for block in section.blocks offset: 1 limit: 4 -%}
             {%- if block.type == 'stat' -%}
               <div class="stat-item text-center">
@@ -77,15 +87,6 @@
       
       <!-- Right Side: Product Showcase -->
       <div class="product-showcase-side relative" style="padding: 48px 40px; min-height: 500px;">
-        
-        <!-- Large Diamond Background Image (Center) -->
-        <div class="diamond-bg-image">
-          {%- if section.settings.diamond_image -%}
-            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" width="350" height="350" loading="lazy">
-          {%- else -%}
-            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" width="350" height="350" loading="lazy">
-          {%- endif -%}
-        </div>
         
         <!-- Product Images Grid (Overlaid) -->
         <div class="showcase-products-grid">
@@ -135,6 +136,8 @@
 <style>
 .testimonial-side {
   background: #000000;
+  position: relative;
+  overflow: hidden;
 }
 
 .testimonial-icon {
@@ -212,7 +215,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   gap: 16px;
-  z-index: 2;
+  z-index: 1;
 }
 
 .showcase-product {
