@@ -1,0 +1,271 @@
+<section class="py-16" style="background-color: #000000;">
+  <div class="container-lux">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
+      <!-- Banner 1: NEW ARRIVALS -->
+      <div class="category-banner-card">
+        <div class="category-banner-overlay"></div>
+        {%- if section.blocks[0].settings.image -%}
+          <img src="{{ section.blocks[0].settings.image | image_url: width: 800 }}" alt="{{ section.blocks[0].settings.title }}" class="category-banner-img">
+        {%- else -%}
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="New Arrivals" class="category-banner-img">
+        {%- endif -%}
+        
+        <div class="category-banner-content">
+          <p class="category-banner-eyebrow">{{ section.blocks[0].settings.eyebrow | default: "NEW ARRIVALS" }}</p>
+          <h3 class="category-banner-title">{{ section.blocks[0].settings.title | default: "JUST FOR YOU" }}</h3>
+          <p class="category-banner-text">{{ section.blocks[0].settings.text | default: "Explore our latest designs" }}</p>
+          <a href="{{ section.blocks[0].settings.link | default: '/collections/new-arrivals' }}" class="btn-category-gold">
+            {{ section.blocks[0].settings.button_text | default: "SHOP NOW" }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Banner 2: CRAFTED TO PERFECTION -->
+      <div class="category-banner-card">
+        <div class="category-banner-overlay"></div>
+        {%- if section.blocks[1].settings.image -%}
+          <img src="{{ section.blocks[1].settings.image | image_url: width: 800 }}" alt="{{ section.blocks[1].settings.title }}" class="category-banner-img">
+        {%- else -%}
+          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80" alt="Crafted to Perfection" class="category-banner-img">
+        {%- endif -%}
+        
+        <div class="category-banner-content">
+          <p class="category-banner-eyebrow">{{ section.blocks[1].settings.eyebrow | default: "MADE WITH PERFECTION" }}</p>
+          <h3 class="category-banner-title">{{ section.blocks[1].settings.title | default: "CRAFTED TO PERFECTION" }}</h3>
+          <p class="category-banner-text">{{ section.blocks[1].settings.text | default: "Behold their brilliant beauty" }}</p>
+          <a href="{{ section.blocks[1].settings.link | default: '/collections/rings' }}" class="btn-category-gold">
+            {{ section.blocks[1].settings.button_text | default: "DISCOVER MORE" }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Banner 3: LIMITED TIME OFFER -->
+      <div class="category-banner-card">
+        <div class="category-banner-overlay"></div>
+        {%- if section.blocks[2].settings.image -%}
+          <img src="{{ section.blocks[2].settings.image | image_url: width: 800 }}" alt="{{ section.blocks[2].settings.title }}" class="category-banner-img">
+        {%- else -%}
+          <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80" alt="Limited Time Offer" class="category-banner-img">
+        {%- endif -%}
+        
+        <div class="category-banner-content">
+          <p class="category-banner-eyebrow">{{ section.blocks[2].settings.eyebrow | default: "LIMITED TIME OFFER" }}</p>
+          <h3 class="category-banner-title">{{ section.blocks[2].settings.title | default: "UP TO 30% OFF" }}</h3>
+          <p class="category-banner-text">{{ section.blocks[2].settings.text | default: "On selected items only" }}</p>
+          <a href="{{ section.blocks[2].settings.link | default: '/collections/sale' }}" class="btn-category-gold">
+            {{ section.blocks[2].settings.button_text | default: "SHOP SALE" }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.category-banner-card {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.category-banner-card:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px rgba(212,175,55,.4), 0 20px 45px -20px rgba(212,175,55,.4);
+}
+
+.category-banner-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.category-banner-card:hover .category-banner-img {
+  transform: scale(1.08);
+}
+
+.category-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.75) 100%);
+  z-index: 1;
+}
+
+.category-banner-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px;
+  z-index: 2;
+  color: #fff;
+}
+
+.category-banner-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d4af37;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.category-banner-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+}
+
+.category-banner-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.btn-category-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e8cd7a, #d4af37 45%, #b8952c);
+  color: #fff;
+  padding: 11px 28px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid rgba(212, 175, 55, 0.6);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  box-shadow: 0 8px 20px -10px rgba(212, 175, 55, 0.7);
+}
+
+.btn-category-gold:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -12px rgba(212, 175, 55, 0.9);
+}
+
+@media (max-width: 767px) {
+  .category-banner-card {
+    height: 360px;
+  }
+  
+  .category-banner-content {
+    padding: 24px;
+  }
+  
+  .category-banner-title {
+    font-size: 1.4rem;
+  }
+  
+  .category-banner-text {
+    font-size: 12px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Category Banners",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Banner Image"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow Text",
+          "default": "NEW ARRIVALS"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "JUST FOR YOU"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Description",
+          "default": "Explore our latest designs"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "SHOP NOW"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Banners",
+      "blocks": [
+        {
+          "type": "banner",
+          "settings": {
+            "eyebrow": "NEW ARRIVALS",
+            "title": "JUST FOR YOU",
+            "text": "Explore our latest designs",
+            "button_text": "SHOP NOW"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "eyebrow": "MADE WITH PERFECTION",
+            "title": "CRAFTED TO PERFECTION",
+            "text": "Behold their brilliant beauty",
+            "button_text": "DISCOVER MORE"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "eyebrow": "LIMITED TIME OFFER",
+            "title": "UP TO 30% OFF",
+            "text": "On selected items only",
+            "button_text": "SHOP SALE"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
