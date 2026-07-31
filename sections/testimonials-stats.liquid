@@ -1,28 +1,22 @@
 <section class="py-20" style="background-color: #000000; border-top: 1px solid #d4af37; border-bottom: 1px solid #d4af37;">
   <div class="container-lux">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+    <!-- Single Column Layout -->
+    <div class="testimonials-stats-wrapper">
       
-      <!-- Left Side: Testimonials + Stats -->
-      <div class="testimonial-side" style="border-right: 1px solid #d4af37; padding: 48px 40px; position: relative;">
+      <!-- Top Section: Testimonial + Stats (Side by Side) -->
+      <div class="top-section" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 1px solid #d4af37; padding-bottom: 48px;">
         
-        <!-- Large Diamond Background Image (Center of Left Side) -->
-        <div class="diamond-bg-image">
-          {%- if section.settings.diamond_image -%}
-            <img src="{{ section.settings.diamond_image | image_url: width: 600 }}" alt="Diamond" width="350" height="350" loading="lazy">
-          {%- else -%}
-            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Diamond" width="350" height="350" loading="lazy">
-          {%- endif -%}
-        </div>
+        <!-- Left: Testimonial -->
+        <div class="testimonial-content" style="padding: 48px 40px;">
+          <!-- Header -->
+          <p class="eyebrow mb-3">{{ section.settings.eyebrow | default: "OUR CLIENTS LOVE US" }}</p>
+          <h2 class="section-title text-white mb-6">{{ section.settings.heading | default: "EXCEPTIONAL ELEGANCE" }}</h2>
         
-        <!-- Header -->
-        <p class="eyebrow mb-3" style="position: relative; z-index: 10;">{{ section.settings.eyebrow | default: "OUR CLIENTS LOVE US" }}</p>
-        <h2 class="section-title text-white mb-6" style="position: relative; z-index: 10;">{{ section.settings.heading | default: "EXCEPTIONAL ELEGANCE" }}</h2>
-        
-        <!-- Featured Testimonial -->
-        {%- if section.blocks.size > 0 -%}
-          {%- assign featured = section.blocks[0] -%}
-          <div class="testimonial-featured mb-8" style="position: relative; z-index: 10;">
-            <div class="flex items-start gap-3 mb-4">
+          <!-- Featured Testimonial -->
+          {%- if section.blocks.size > 0 -%}
+            {%- assign featured = section.blocks[0] -%}
+            <div class="testimonial-featured mb-8">
+              <div class="flex items-start gap-3 mb-4">
               <div class="testimonial-icon">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="#d4af37">
                   <path d="M12 2L9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2z"/>
@@ -49,11 +43,12 @@
                 </div>
               </div>
             </div>
-          </div>
-        {%- endif -%}
+          {%- endif -%}
+        </div>
         
-        <!-- Stats Grid -->
-        <div class="stats-grid grid grid-cols-2 lg:grid-cols-4 gap-6 mt-12" style="position: relative; z-index: 10;">
+        <!-- Right: Stats Grid -->
+        <div class="stats-content" style="padding: 48px 40px; display: flex; align-items: center;">
+          <div class="stats-grid grid grid-cols-2 gap-8 w-full">
           {%- for block in section.blocks offset: 1 limit: 4 -%}
             {%- if block.type == 'stat' -%}
               <div class="stat-item text-center">
@@ -82,41 +77,39 @@
               </div>
             {%- endif -%}
           {%- endfor -%}
+          </div>
         </div>
       </div>
       
-      <!-- Right Side: Product Showcase -->
-      <div class="product-showcase-side relative" style="padding: 48px 40px; min-height: 500px;">
+      <!-- Bottom Section: Diamond + Product Showcase -->
+      <div class="bottom-section" style="position: relative; padding: 48px 40px; min-height: 400px;">
         
-        <!-- Product Images Grid (Overlaid) -->
-        <div class="showcase-products-grid">
-          {%- if section.settings.product_1 -%}
-            <div class="showcase-product showcase-product-1">
-              <img src="{{ section.settings.product_1 | image_url: width: 400 }}" alt="Product 1" width="400" height="400" loading="lazy">
-            </div>
+        <!-- Large Diamond Background Image (Center Bottom) -->
+        <div class="diamond-bg-center">
+          {%- if section.settings.diamond_image -%}
+            <img src="{{ section.settings.diamond_image | image_url: width: 800 }}" alt="Diamond" width="500" height="300" loading="lazy">
           {%- else -%}
-            <div class="showcase-product showcase-product-1">
-              <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="Ring" width="400" height="400" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80" alt="Diamond" width="500" height="300" loading="lazy">
+          {%- endif -%}
+        </div>
+        
+        <!-- Product Images Grid (Overlaid on Top) -->
+        <div class="showcase-products-grid-horizontal">
+          {%- if section.settings.product_1 -%}
+            <div class="showcase-product-h showcase-product-1">
+              <img src="{{ section.settings.product_1 | image_url: width: 500 }}" alt="Product 1" width="500" height="500" loading="lazy">
             </div>
           {%- endif -%}
           
           {%- if section.settings.product_2 -%}
-            <div class="showcase-product showcase-product-2">
-              <img src="{{ section.settings.product_2 | image_url: width: 400 }}" alt="Product 2" width="400" height="400" loading="lazy">
-            </div>
-          {%- else -%}
-            <div class="showcase-product showcase-product-2">
-              <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Necklace" width="400" height="400" loading="lazy">
+            <div class="showcase-product-h showcase-product-2">
+              <img src="{{ section.settings.product_2 | image_url: width: 500 }}" alt="Product 2" width="500" height="500" loading="lazy">
             </div>
           {%- endif -%}
           
           {%- if section.settings.product_3 -%}
-            <div class="showcase-product showcase-product-3">
-              <img src="{{ section.settings.product_3 | image_url: width: 400 }}" alt="Product 3" width="400" height="400" loading="lazy">
-            </div>
-          {%- else -%}
-            <div class="showcase-product showcase-product-3">
-              <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Ring Set" width="400" height="400" loading="lazy">
+            <div class="showcase-product-h showcase-product-3">
+              <img src="{{ section.settings.product_3 | image_url: width: 500 }}" alt="Product 3" width="500" height="500" loading="lazy">
             </div>
           {%- endif -%}
           
@@ -134,10 +127,17 @@
 </section>
 
 <style>
-.testimonial-side {
+.testimonials-stats-wrapper {
   background: #000000;
-  position: relative;
-  overflow: hidden;
+}
+
+.testimonial-content {
+  background: #000000;
+}
+
+.stats-content {
+  background: #000000;
+  border-left: 1px solid #d4af37;
 }
 
 .testimonial-icon {
@@ -161,8 +161,11 @@
 }
 
 .stats-grid {
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  padding-top: 24px;
+  padding: 0;
+}
+
+.stat-item {
+  text-align: center;
 }
 
 .stat-icon {
@@ -170,76 +173,62 @@
   justify-content: center;
   align-items: center;
   height: 48px;
+  margin-bottom: 12px;
 }
 
-.product-showcase-side {
+.bottom-section {
   background: #000000;
   position: relative;
   overflow: hidden;
 }
 
-.showcase-diamond-bg {
+.diamond-bg-center {
   position: absolute;
-  top: 50%;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 300px;
+  transform: translateX(-50%);
+  width: 500px;
   height: 300px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.08), transparent 70%);
-  pointer-events: none;
-}
-
-.diamond-bg-image {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 350px;
-  height: 350px;
   z-index: 0;
-  opacity: 0.7;
+  opacity: 0.5;
   pointer-events: none;
 }
 
-.diamond-bg-image img {
+.diamond-bg-center img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: brightness(1.1);
 }
 
-.showcase-products-grid {
+.showcase-products-grid-horizontal {
   position: relative;
-  height: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 16px;
-  z-index: 1;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.showcase-product {
+.showcase-product-h {
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid rgba(212, 175, 55, 0.2);
   transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
   background: #0a0a0a;
+  aspect-ratio: 1;
 }
 
-.showcase-product:hover {
+.showcase-product-h:hover {
   transform: scale(1.05);
   border-color: rgba(212, 175, 55, 0.6);
   box-shadow: 0 0 0 1px rgba(212,175,55,.4), 0 12px 32px -12px rgba(212,175,55,.5);
 }
 
-.showcase-product img {
+.showcase-product-h img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.showcase-product-1 {
-  grid-row: span 2;
 }
 
 .showcase-play-btn {
@@ -268,18 +257,21 @@
 }
 
 @media (max-width: 1023px) {
-  .testimonial-side,
-  .product-showcase-side {
-    border-right: none !important;
-    border-bottom: 1px solid #d4af37;
+  .top-section {
+    grid-template-columns: 1fr !important;
   }
   
-  .stats-grid {
-    grid-template-cols: 2;
+  .stats-content {
+    border-left: none !important;
+    border-top: 1px solid #d4af37;
   }
   
-  .product-showcase-side {
-    min-height: 400px;
+  .showcase-products-grid-horizontal {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .bottom-section {
+    min-height: 600px !important;
   }
 }
 </style>
