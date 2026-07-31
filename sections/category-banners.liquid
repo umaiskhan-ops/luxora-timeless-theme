@@ -4,7 +4,6 @@
       
       <!-- Banner 1: NEW ARRIVALS -->
       <div class="category-banner-card">
-        <div class="category-banner-overlay"></div>
         {%- if section.blocks[0].settings.image -%}
           <img src="{{ section.blocks[0].settings.image | image_url: width: 800 }}" alt="{{ section.blocks[0].settings.title }}" class="category-banner-img">
         {%- else -%}
@@ -23,7 +22,6 @@
 
       <!-- Banner 2: CRAFTED TO PERFECTION -->
       <div class="category-banner-card">
-        <div class="category-banner-overlay"></div>
         {%- if section.blocks[1].settings.image -%}
           <img src="{{ section.blocks[1].settings.image | image_url: width: 800 }}" alt="{{ section.blocks[1].settings.title }}" class="category-banner-img">
         {%- else -%}
@@ -42,7 +40,6 @@
 
       <!-- Banner 3: LIMITED TIME OFFER -->
       <div class="category-banner-card">
-        <div class="category-banner-overlay"></div>
         {%- if section.blocks[2].settings.image -%}
           <img src="{{ section.blocks[2].settings.image | image_url: width: 800 }}" alt="{{ section.blocks[2].settings.title }}" class="category-banner-img">
         {%- else -%}
@@ -92,13 +89,6 @@
 
 .category-banner-card:hover .category-banner-img {
   transform: scale(1.08);
-}
-
-.category-banner-overlay {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  z-index: 1;
 }
 
 .category-banner-content {
