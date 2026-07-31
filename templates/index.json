@@ -151,17 +151,6 @@
       ],
       "settings": {}
     },
-    "about": {
-      "type": "about-story",
-      "settings": {
-        "eyebrow": "Made With Perfection",
-        "heading": "EXPLORE MORE",
-        "text": "<p>Since our first workshop, LUXORA has crafted jewelry designed to outlive trends. Every stone is ethically sourced, every setting finished by hand.</p>",
-        "button_label": "Discover Our Story",
-        "button_link": "",
-        "video_link": ""
-      }
-    },
     "testimonials_stats_wyaLUH": {
       "type": "testimonials-stats",
       "blocks": {
@@ -216,7 +205,20 @@
       "settings": {
         "eyebrow": "OUR CLIENTS LOVE US",
         "heading": "EXCEPTIONAL ELEGANCE",
-        "product_1": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_03_31_58_PM.png"
+        "product_1": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_03_31_58_PM.png",
+        "product_2": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_03_43_54_PM.png",
+        "product_3": "shopify://shop_images/ChatGPT_Image_Jul_31_2026_03_46_10_PM.png"
+      }
+    },
+    "about": {
+      "type": "about-story",
+      "settings": {
+        "eyebrow": "Made With Perfection",
+        "heading": "EXPLORE MORE",
+        "text": "<p>Since our first workshop, LUXORA has crafted jewelry designed to outlive trends. Every stone is ethically sourced, every setting finished by hand.</p>",
+        "button_label": "Discover Our Story",
+        "button_link": "",
+        "video_link": ""
       }
     },
     "newsletter": {
@@ -234,8 +236,8 @@
     "features",
     "featured",
     "promo",
-    "about",
     "testimonials_stats_wyaLUH",
+    "about",
     "newsletter"
   ]
 }
