@@ -14,13 +14,13 @@
 <section style="background: #000; padding: 60px 0;">
   <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
 
-    <div style="display: grid; grid-template-columns: 260px 1fr; gap: 48px; margin-top: 0;">
+    {%- if collection.filters.size > 0 -%}
+      <div style="display: grid; grid-template-columns: 260px 1fr; gap: 48px; margin-top: 0;">
 
-      {% comment %} Filters Sidebar {% endcomment %}
-      <aside style="position: sticky; top: 100px; align-self: start; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 32px 24px;">
-        <h3 style="font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: #d4af37; margin: 0 0 24px 0; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid rgba(212,175,55,0.2);">FILTERS</h3>
-        <form id="FacetForm" style="display: flex; flex-direction: column; gap: 24px;">
-          {%- if collection.filters.size > 0 -%}
+        {% comment %} Filters Sidebar {% endcomment %}
+        <aside style="position: sticky; top: 100px; align-self: start; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 32px 24px;">
+          <h3 style="font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: #d4af37; margin: 0 0 24px 0; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid rgba(212,175,55,0.2);">FILTERS</h3>
+          <form id="FacetForm" style="display: flex; flex-direction: column; gap: 24px;">
             {%- for filter in collection.filters -%}
               <div style="padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
                 <p style="margin-bottom: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.8);">{{ filter.label }}</p>
@@ -46,13 +46,10 @@
                 {%- endcase -%}
               </div>
             {%- endfor -%}
-          {%- else -%}
-            <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">Filters will appear here once configured in Shopify Admin.</p>
-          {%- endif -%}
-        </form>
-      </aside>
+          </form>
+        </aside>
 
-      <div>
+        <div>
         <!-- Sort & Count Bar -->
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding: 20px 24px; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px;">
           <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); font-weight: 600;">{{ collection.products_count }} Products</p>
@@ -105,6 +102,61 @@
         {%- endpaginate -%}
       </div>
     </div>
+    {%- else -%}
+      <!-- No Filters - Full Width Grid -->
+      <div style="margin-top: 0;">
+        <!-- Sort & Count Bar -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding: 20px 24px; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px;">
+          <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); font-weight: 600;">{{ collection.products_count }} Products</p>
+          <form method="get" style="display: flex; align-items: center; gap: 12px;">
+            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+            <label for="SortBy" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); font-weight: 600;">Sort By</label>
+            <select id="SortBy" name="sort_by" onchange="this.form.submit()" style="border: 1px solid rgba(212,175,55,0.3); background: #000; color: #fff; padding: 10px 16px; font-size: 13px; border-radius: 6px; outline: none; cursor: pointer;" onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
+              {%- endfor -%}
+            </select>
+          </form>
+        </div>
+
+        {%- paginate collection.products by section.settings.products_per_page -%}
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;">
+            {%- for product in collection.products -%}
+              {% render 'product-card', product: product %}
+            {%- else -%}
+              <div style="grid-column: 1 / -1; padding: 80px 40px; text-align: center;">
+                <div style="width: 120px; height: 120px; background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px auto;">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                  </svg>
+                </div>
+                <h3 style="font-size: 1.75rem; font-weight: 700; color: #fff; margin: 0 0 12px 0;">No Products Found</h3>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin: 0 0 32px 0;">Browse our collections to discover exquisite jewelry pieces.</p>
+                <a href="/collections" style="display: inline-block; padding: 14px 32px; background: #d4af37; color: #000; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-decoration: none; border-radius: 8px; text-transform: uppercase; transition: all 0.3s;" onmouseover="this.style.background='#e8cd7a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#d4af37'; this.style.transform='translateY(0)'">View Collections</a>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          {%- if paginate.pages > 1 -%}
+            <nav style="margin-top: 60px; display: flex; justify-content: center; gap: 8px;">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}" style="padding: 12px 20px; border: 1px solid rgba(212,175,55,0.3); background: transparent; color: #d4af37; font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.background='rgba(212,175,55,0.1)'" onmouseout="this.style.borderColor='rgba(212,175,55,0.3)'; this.style.background='transparent'">← Previous</a>
+              {%- endif -%}
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" style="padding: 12px 18px; border: 1px solid rgba(212,175,55,0.3); background: transparent; color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.color='#d4af37'" onmouseout="this.style.borderColor='rgba(212,175,55,0.3)'; this.style.color='rgba(255,255,255,0.7)'">{{ part.title }}</a>
+                {%- else -%}
+                  <span style="padding: 12px 18px; border: 1px solid #d4af37; background: #d4af37; color: #000; font-size: 13px; font-weight: 700; border-radius: 6px;">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" style="padding: 12px 20px; border: 1px solid rgba(212,175,55,0.3); background: transparent; color: #d4af37; font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.background='rgba(212,175,55,0.1)'" onmouseout="this.style.borderColor='rgba(212,175,55,0.3)'; this.style.background='transparent'">Next →</a>
+              {%- endif -%}
+            </nav>
+          {%- endif -%}
+        {%- endpaginate -%}
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
