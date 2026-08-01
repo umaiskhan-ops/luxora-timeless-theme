@@ -96,10 +96,12 @@
       <div>
         <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">SHOP</h3>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-          {%- assign shop_menu = linklists[section.settings.menu_shop] -%}
-          {%- for link in shop_menu.links -%}
-            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
-          {%- endfor -%}
+          <li><a href="/collections/all" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">All Products</a></li>
+          <li><a href="/collections/rings" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Rings</a></li>
+          <li><a href="/collections/necklaces" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Necklaces</a></li>
+          <li><a href="/collections/earrings" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Earrings</a></li>
+          <li><a href="/collections/bracelets" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Bracelets</a></li>
+          <li><a href="/collections/gift-sets" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Gift Sets</a></li>
         </ul>
       </div>
       
@@ -107,10 +109,12 @@
       <div>
         <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">COLLECTIONS</h3>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-          {%- assign collections_menu = linklists[section.settings.menu_collections] -%}
-          {%- for link in collections_menu.links -%}
-            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
-          {%- endfor -%}
+          <li><a href="/collections/best-sellers" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Best Sellers</a></li>
+          <li><a href="/collections/new-arrivals" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">New Arrivals</a></li>
+          <li><a href="/collections/wedding-collection" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Wedding Collection</a></li>
+          <li><a href="/collections/diamond-collection" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Diamond Collection</a></li>
+          <li><a href="/collections/gold-collection" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Gold Collection</a></li>
+          <li><a href="/collections/pearl-collection" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Pearl Collection</a></li>
         </ul>
       </div>
       
@@ -118,10 +122,12 @@
       <div>
         <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">CUSTOMER CARE</h3>
         <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
-          {%- assign care_menu = linklists[section.settings.menu_customer_care] -%}
-          {%- for link in care_menu.links -%}
-            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
-          {%- endfor -%}
+          <li><a href="/pages/contact-us" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Contact Us</a></li>
+          <li><a href="/pages/about-us" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">About Us</a></li>
+          <li><a href="/pages/shipping-policy" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Shipping Policy</a></li>
+          <li><a href="/pages/return-policy" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Return Policy</a></li>
+          <li><a href="/pages/terms-conditions" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Terms & Conditions</a></li>
+          <li><a href="/pages/privacy-policy" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Privacy Policy</a></li>
         </ul>
       </div>
       
@@ -129,10 +135,11 @@
       <div>
         <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">ACCOUNT</h3>
         <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px;">
-          {%- assign account_menu = linklists[section.settings.menu_account] -%}
-          {%- for link in account_menu.links -%}
-            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
-          {%- endfor -%}
+          <li><a href="/account" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">My Account</a></li>
+          <li><a href="/account#orders" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Order Tracking</a></li>
+          <li><a href="/pages/wishlist" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Wishlist</a></li>
+          <li><a href="/pages/careers" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">Careers</a></li>
+          <li><a href="/pages/faqs" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">FAQs</a></li>
         </ul>
         
         <!-- Payment Icons -->
