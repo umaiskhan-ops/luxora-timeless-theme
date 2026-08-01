@@ -1,0 +1,111 @@
+<!-- Collections Listing Hero -->
+<section style="background: linear-gradient(135deg, #000 0%, #1a1a1a 100%); padding: 100px 0 80px 0; border-bottom: 1px solid #d4af37;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center;">
+    <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 16px 0; text-transform: uppercase;">EXPLORE OUR</p>
+    <h1 style="font-size: 3.5rem; font-weight: 700; color: #fff; margin: 0 0 20px 0; letter-spacing: -0.02em; line-height: 1.1;">All Collections</h1>
+    <p style="font-size: 1.125rem; color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto; line-height: 1.7;">Discover our curated collections of exquisite jewelry. From timeless classics to modern designs, find the perfect piece that tells your unique story.</p>
+  </div>
+</section>
+
+<!-- Collections Grid -->
+<section style="background: #000; padding: 80px 0;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+    
+    {%- if collections.size > 0 -%}
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        {%- for collection in collections -%}
+          {%- unless collection.handle == 'frontpage' -%}
+            <a href="{{ collection.url }}" style="text-decoration: none; display: block; position: relative; overflow: hidden; border-radius: 12px; border: 1px solid rgba(212,175,55,0.2); background: rgba(212,175,55,0.03); transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 32px rgba(212,175,55,0.3)'" onmouseout="this.style.borderColor='rgba(212,175,55,0.2)'; this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+              
+              <!-- Collection Image -->
+              <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; background: #0a0a0a;">
+                {%- if collection.image -%}
+                  <img src="{{ collection.image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" width="600" height="600" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                {%- elsif collection.products.first and collection.products.first.featured_image -%}
+                  <img src="{{ collection.products.first.featured_image | image_url: width: 600 }}" alt="{{ collection.title | escape }}" width="600" height="600" loading="lazy" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                {%- else -%}
+                  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);">
+                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                      <path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/>
+                    </svg>
+                  </div>
+                {%- endif -%}
+                
+                <!-- Overlay -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%);"></div>
+                
+                <!-- Product Count Badge -->
+                {%- if collection.products_count > 0 -%}
+                  <div style="position: absolute; top: 16px; right: 16px; background: rgba(0,0,0,0.8); border: 1px solid #d4af37; padding: 6px 14px; border-radius: 20px;">
+                    <span style="font-size: 11px; font-weight: 700; color: #d4af37; letter-spacing: 0.08em;">{{ collection.products_count }} {% if collection.products_count == 1 %}ITEM{% else %}ITEMS{% endif %}</span>
+                  </div>
+                {%- endif -%}
+              </div>
+              
+              <!-- Collection Info -->
+              <div style="padding: 24px;">
+                <h3 style="font-size: 1.5rem; font-weight: 700; color: #d4af37; margin: 0 0 8px 0; letter-spacing: -0.01em;">{{ collection.title }}</h3>
+                {%- if collection.description != blank -%}
+                  <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin: 0 0 16px 0; line-height: 1.6;">{{ collection.description | strip_html | truncate: 100 }}</p>
+                {%- else -%}
+                  <p style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin: 0 0 16px 0; line-height: 1.6;">Explore our curated selection of jewelry pieces.</p>
+                {%- endif -%}
+                
+                <div style="display: inline-flex; align-items: center; gap: 8px; color: #d4af37; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;">
+                  <span>View Collection</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </div>
+              
+            </a>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <!-- Empty State -->
+      <div style="text-align: center; padding: 80px 40px;">
+        <div style="width: 120px; height: 120px; background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px auto;">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+            <path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/>
+          </svg>
+        </div>
+        <h2 style="font-size: 2rem; font-weight: 700; color: #fff; margin: 0 0 16px 0;">No Collections Yet</h2>
+        <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin: 0 0 32px 0; max-width: 500px; margin-left: auto; margin-right: auto; line-height: 1.7;">Collections will appear here once you create them in Shopify Admin.</p>
+        <a href="/admin/collections" style="display: inline-block; padding: 14px 32px; background: #d4af37; color: #000; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-decoration: none; border-radius: 8px; text-transform: uppercase; transition: all 0.3s;" onmouseover="this.style.background='#e8cd7a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#d4af37'; this.style.transform='translateY(0)'">
+          Create Collection
+        </a>
+      </div>
+    {%- endif -%}
+    
+  </div>
+</section>
+
+<style>
+@media (max-width: 1024px) {
+  section > div > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  section > div > div {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Collections List",
+  "settings": [],
+  "presets": [{ "name": "Collections List" }]
+}
+{% endschema %}
