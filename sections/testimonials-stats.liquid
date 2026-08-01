@@ -108,7 +108,7 @@
           {%- endif -%}
           
           <!-- Play Button (center) -->
-          <button class="play-btn-center" aria-label="Play video">
+          <button class="play-btn-center" aria-label="Play video" onclick="openVideoModal()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#d4af37">
               <polygon points="5 3 19 12 5 21 5 3"/>
             </svg>
@@ -118,7 +118,60 @@
       
     </div>
   </div>
+  
+  <!-- Video Modal -->
+  <div id="videoModal" class="video-modal" onclick="closeVideoModal()">
+    <div class="video-modal-content" onclick="event.stopPropagation()">
+      <button class="video-close-btn" onclick="closeVideoModal()">&times;</button>
+      <div class="video-wrapper">
+        <iframe id="videoIframe" src="" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 </section>
+
+<script>
+function openVideoModal() {
+  const videoUrl = '{{ section.settings.video_url }}';
+  if (!videoUrl) {
+    alert('Please add a video URL in the theme editor');
+    return;
+  }
+  
+  // Convert URL to embed format
+  let embedUrl = videoUrl;
+  
+  // YouTube
+  if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+    const videoId = videoUrl.includes('youtu.be') 
+      ? videoUrl.split('youtu.be/')[1]?.split('?')[0]
+      : new URLSearchParams(new URL(videoUrl).search).get('v');
+    embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  }
+  // Vimeo
+  else if (videoUrl.includes('vimeo.com')) {
+    const videoId = videoUrl.split('vimeo.com/')[1]?.split('?')[0];
+    embedUrl = `https://player.vimeo.com/video/${videoId}?autoplay=1`;
+  }
+  
+  document.getElementById('videoIframe').src = embedUrl;
+  document.getElementById('videoModal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideoModal() {
+  document.getElementById('videoModal').style.display = 'none';
+  document.getElementById('videoIframe').src = '';
+  document.body.style.overflow = '';
+}
+
+// Close on ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeVideoModal();
+  }
+});
+</script>
 
 <style>
 .left-panel {
@@ -225,6 +278,68 @@
   box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
 }
 
+.video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.video-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  background: #000;
+  border: 2px solid #d4af37;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.video-close-btn {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #d4af37;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 10000;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.video-close-btn:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 1023px) {
   .testimonials-main-grid {
     grid-template-columns: 1fr !important;
@@ -238,6 +353,11 @@
   .stats-row-compact {
     grid-template-columns: repeat(2, 1fr) !important;
   }
+  
+  .video-close-btn {
+    top: -50px;
+    font-size: 50px;
+  }
 }
 </style>
 
@@ -247,6 +367,7 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "OUR CLIENTS LOVE US" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "EXCEPTIONAL ELEGANCE" },
+    { "type": "url", "id": "video_url", "label": "Video URL (YouTube or Vimeo)", "info": "Add your YouTube or Vimeo video link here" },
     { "type": "image_picker", "id": "diamond_image", "label": "Diamond Background Image" },
     { "type": "image_picker", "id": "product_1", "label": "Product Image 1 (Left - Large)" },
     { "type": "image_picker", "id": "product_2", "label": "Product Image 2 (Top Right)" },
