@@ -1,4 +1,8 @@
 {
-  "sections": { "main": { "type": "main-policy", "settings": { "eyebrow": "Support", "heading": "Shipping Policy", "policy": "shipping" } } },
-  "order": ["main"]
+  "sections": {
+    "page_shipping": {
+      "type": "page-shipping"
+    }
+  },
+  "order": ["page_shipping"]
 }
