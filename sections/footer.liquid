@@ -1,77 +1,251 @@
-<footer class="bg-navy pt-16 text-white">
-  <div class="container-lux grid gap-10 pb-12 md:grid-cols-2 lg:grid-cols-6">
-
-    <div class="lg:col-span-2">
-      <a href="{{ routes.root_url }}" class="flex items-center gap-2">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.4"><path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/></svg>
-        <span class="leading-none">
-          <span class="block font-display text-xl tracking-[.18em]">LUXORA</span>
-          <span class="block text-[9px] tracking-[.55em] text-gold">JEWELRY</span>
-        </span>
-      </a>
-      <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/55">{{ section.settings.brand_text }}</p>
-      <div class="mt-6">{% render 'social-icons' %}</div>
+<!-- Newsletter Bar (Top Gold Section) -->
+<section class="newsletter-bar" style="background: linear-gradient(135deg, #e8cd7a, #d4af37); padding: 24px 0;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      
+      <!-- Left: Icon + Text -->
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <div style="width: 56px; height: 56px; background: rgba(0,0,0,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8l10 6 10-6"/>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 700; color: #000; margin: 0; letter-spacing: 0.02em;">{{ section.settings.newsletter_heading | default: "JOIN OUR EXCLUSIVE CLUB" }}</h3>
+          <p style="font-size: 13px; color: rgba(0,0,0,0.7); margin: 4px 0 0 0;">{{ section.settings.newsletter_text | default: "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals." }}</p>
+        </div>
+      </div>
+      
+      <!-- Right: Email Form -->
+      <div style="flex: 1; max-width: 500px;">
+        {% form 'customer', class: 'newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div style="display: flex; gap: 8px;">
+            <input 
+              type="email" 
+              name="contact[email]" 
+              required 
+              placeholder="Enter your email address" 
+              aria-label="Email"
+              style="flex: 1; padding: 14px 20px; border: 2px solid rgba(0,0,0,0.15); background: rgba(255,255,255,0.9); color: #000; font-size: 14px; border-radius: 6px; outline: none; transition: all 0.3s ease;"
+              onfocus="this.style.borderColor='#000'; this.style.background='#fff';"
+              onblur="this.style.borderColor='rgba(0,0,0,0.15)'; this.style.background='rgba(255,255,255,0.9)';"
+            >
+            <button 
+              type="submit" 
+              style="padding: 14px 32px; background: #000; color: #d4af37; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase;"
+              onmouseover="this.style.background='#1a1a1a'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)';"
+              onmouseout="this.style.background='#000'; this.style.transform='translateY(0)'; this.style.boxShadow='none';"
+            >
+              Subscribe
+            </button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="margin-top: 8px; font-size: 12px; color: #000; font-weight: 600;">✓ Thank you for subscribing!</p>
+          {%- endif -%}
+        {% endform %}
+      </div>
+      
     </div>
+  </div>
+</section>
 
-    {%- for block in section.blocks -%}
-      {%- assign fmenu = linklists[block.settings.menu] -%}
-      <div {{ block.shopify_attributes }}>
-        <h3 class="text-xs font-semibold uppercase tracking-[.2em] text-gold">{{ block.settings.title }}</h3>
-        <ul class="mt-4 space-y-2.5">
-          {%- for link in fmenu.links -%}
-            <li><a href="{{ link.url }}" class="text-sm text-white/60 transition hover:text-gold">{{ link.title }}</a></li>
+<!-- Main Footer (Black Section) -->
+<footer style="background: #000000; color: #fff; padding: 60px 0 0 0; border-top: 1px solid #d4af37;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
+    
+    <!-- Top Row: Brand + Menu Columns + Payment -->
+    <div style="display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.2fr; gap: 48px; padding-bottom: 48px;">
+      
+      <!-- Column 1: Brand -->
+      <div>
+        <a href="{{ routes.root_url }}" style="display: flex; align-items: center; gap: 12px; text-decoration: none;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+            <path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/>
+          </svg>
+          <span style="line-height: 1;">
+            <span style="display: block; font-size: 24px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37;">LUXORA</span>
+            <span style="display: block; font-size: 10px; letter-spacing: 0.4em; color: #d4af37; margin-top: 2px;">JEWELRY</span>
+          </span>
+        </a>
+        <p style="margin-top: 20px; font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 280px;">
+          {{ section.settings.brand_text | default: "Luxury that shines, beauty that lasts. Crafted for unforgettable moments." }}
+        </p>
+        
+        <!-- Social Icons -->
+        <div style="margin-top: 24px; display: flex; gap: 12px;">
+          <a href="{{ section.settings.facebook_url }}" target="_blank" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4af37"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="{{ section.settings.instagram_url }}" target="_blank" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="{{ section.settings.pinterest_url }}" target="_blank" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4af37"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.2 2.6 7.8 6.3 9.3-.1-.8-.2-2.1 0-3 .2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.5-.2 1 .5 1.8 1.5 1.8 1.8 0 3.2-1.9 3.2-4.6 0-2.4-1.7-4.1-4.2-4.1-2.9 0-4.6 2.2-4.6 4.4 0 .9.3 1.8.8 2.3.1.1.1.2.1.3-.1.3-.2 1-.3 1.1 0 .2-.1.2-.3.1-1.3-.6-2.1-2.5-2.1-4 0-3.2 2.3-6.1 6.7-6.1 3.5 0 6.3 2.5 6.3 5.9 0 3.5-2.2 6.4-5.3 6.4-1 0-2-.5-2.3-1.1 0 0-.5 2-.6 2.5-.2.9-.8 2-1.2 2.7.9.3 1.9.4 2.9.4 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+          </a>
+          <a href="{{ section.settings.youtube_url }}" target="_blank" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#d4af37"><path d="M23.5 6.2s-.2-1.7-1-2.4c-.9-1-1.9-1-2.4-1.1C16.7 2.5 12 2.5 12 2.5s-4.7 0-8.1.2c-.5.1-1.5.1-2.4 1.1-.7.7-1 2.4-1 2.4S0 8.1 0 10v1.8c0 1.9.5 3.8.5 3.8s.2 1.7 1 2.4c.9 1 2.1.9 2.6 1 1.9.2 7.9.2 7.9.2s4.7 0 8.1-.3c.5-.1 1.5-.1 2.4-1.1.7-.7 1-2.4 1-2.4s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.5 15.5V8l6.5 3.8-6.5 3.7z"/></svg>
+          </a>
+          <a href="{{ section.settings.tiktok_url }}" target="_blank" style="width: 36px; height: 36px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; text-decoration: none;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4af37"><path d="M19.6 8.6c-1.8 0-3.3-.9-4.2-2.3v7.8c0 3.9-3.2 7.1-7.1 7.1S1.2 18 1.2 14.1c0-3.9 3.2-7.1 7.1-7.1.4 0 .7 0 1.1.1v3.5c-.4-.1-.7-.2-1.1-.2-2 0-3.6 1.6-3.6 3.6s1.6 3.6 3.6 3.6 3.6-1.6 3.6-3.6V1h3.5c.3 2.6 2.4 4.7 5 4.9v2.7z"/></svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Column 2: Shop Menu -->
+      <div>
+        <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">SHOP</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+          {%- assign shop_menu = linklists[section.settings.menu_shop] -%}
+          {%- for link in shop_menu.links -%}
+            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
           {%- endfor -%}
         </ul>
       </div>
-    {%- endfor -%}
-
-    <div>
-      <h3 class="text-xs font-semibold uppercase tracking-[.2em] text-gold">Newsletter</h3>
-      <p class="mt-4 text-sm text-white/55">Be first to know about new drops.</p>
-      {% form 'customer', class: 'mt-4' %}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input type="email" name="contact[email]" required placeholder="Email address" aria-label="Email"
-               class="w-full border border-white/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-gold">
-        <button type="submit" class="btn btn-gold mt-3 w-full">Subscribe</button>
-        {%- if form.posted_successfully? -%}<p class="mt-2 text-xs text-gold">Thank you for subscribing.</p>{%- endif -%}
-      {% endform %}
-      <p class="mt-6 text-xs uppercase tracking-[.18em] text-white/40">We accept</p>
-      <div class="mt-2 flex flex-wrap gap-1.5">
-        {%- for type in shop.enabled_payment_types -%}
-          {{ type | payment_type_svg_tag: class: 'h-6 w-auto bg-white rounded-sm' }}
-        {%- else -%}
-          <span class="rounded bg-white px-2 py-1 text-[10px] font-semibold text-navy">VISA</span>
-          <span class="rounded bg-white px-2 py-1 text-[10px] font-semibold text-navy">MASTERCARD</span>
-          <span class="rounded bg-white px-2 py-1 text-[10px] font-semibold text-navy">PAYPAL</span>
-        {%- endfor -%}
+      
+      <!-- Column 3: Collections Menu -->
+      <div>
+        <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">COLLECTIONS</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+          {%- assign collections_menu = linklists[section.settings.menu_collections] -%}
+          {%- for link in collections_menu.links -%}
+            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
       </div>
+      
+      <!-- Column 4: Customer Care Menu -->
+      <div>
+        <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">CUSTOMER CARE</h3>
+        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+          {%- assign care_menu = linklists[section.settings.menu_customer_care] -%}
+          {%- for link in care_menu.links -%}
+            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+      
+      <!-- Column 5: Account + Payment -->
+      <div>
+        <h3 style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 20px 0; text-transform: uppercase;">ACCOUNT</h3>
+        <ul style="list-style: none; padding: 0; margin: 0 0 32px 0; display: flex; flex-direction: column; gap: 12px;">
+          {%- assign account_menu = linklists[section.settings.menu_account] -%}
+          {%- for link in account_menu.links -%}
+            <li><a href="{{ link.url }}" style="font-size: 13px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">{{ link.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+        
+        <!-- Payment Icons -->
+        <div>
+          <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: rgba(255,255,255,0.4); margin: 0 0 12px 0; text-transform: uppercase;">WE ACCEPT</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+            {%- else -%}
+              <div style="width: 48px; height: 32px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: #1a1a66;">VISA</span>
+              </div>
+              <div style="width: 48px; height: 32px; background: #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: #eb001b;">MC</span>
+              </div>
+              <div style="width: 48px; height: 32px; background: #003087; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: #fff;">PayPal</span>
+              </div>
+              <div style="width: 48px; height: 32px; background: #00d4ff; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: #fff;">AMEX</span>
+              </div>
+              <div style="width: 48px; height: 32px; background: #5f6368; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: #fff;">GPay</span>
+              </div>
+              <div style="width: 48px; height: 32px; background: #000; border: 1px solid #fff; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 9px; font-weight: 800; color: #fff;">APay</span>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      </div>
+      
     </div>
-  </div>
-
-  <div class="border-t border-white/10">
-    <div class="container-lux flex flex-col items-center justify-between gap-3 py-5 md:flex-row">
-      <p class="text-xs text-white/45">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
-      <ul class="flex flex-wrap gap-5">
-        {%- if shop.privacy_policy -%}<li><a href="{{ shop.privacy_policy.url }}" class="text-xs text-white/45 hover:text-gold">Privacy Policy</a></li>{%- endif -%}
-        {%- if shop.terms_of_service -%}<li><a href="{{ shop.terms_of_service.url }}" class="text-xs text-white/45 hover:text-gold">Terms &amp; Conditions</a></li>{%- endif -%}
-        {%- if shop.refund_policy -%}<li><a href="{{ shop.refund_policy.url }}" class="text-xs text-white/45 hover:text-gold">Refund Policy</a></li>{%- endif -%}
+    
+    <!-- Bottom Row: Copyright + Links -->
+    <div style="border-top: 1px solid rgba(212,175,55,0.2); padding: 24px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin: 0;">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All Rights Reserved.
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; gap: 24px; flex-wrap: wrap;">
+        <li><a href="{{ pages['privacy-policy'].url }}" style="font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Privacy Policy</a></li>
+        <li><a href="{{ pages['terms-conditions'].url }}" style="font-size: 12px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s ease;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Terms &amp; Conditions</a></li>
       </ul>
     </div>
+    
   </div>
 </footer>
+
+<style>
+.payment-icon {
+  width: 48px;
+  height: 32px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+@media (max-width: 1200px) {
+  footer > div > div:first-child {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .newsletter-bar > div > div {
+    flex-direction: column !important;
+    text-align: center;
+  }
+  
+  .newsletter-bar input[type="email"] {
+    text-align: center;
+  }
+  
+  footer > div > div:first-child {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+}
+</style>
 
 {% schema %}
 {
   "name": "Footer",
   "settings": [
-    { "type": "textarea", "id": "brand_text", "label": "Brand story", "default": "Luxury that shines, beauty that lasts. Crafted for unforgettable moments." }
-  ],
-  "blocks": [
-    { "type": "menu", "name": "Menu column", "limit": 3, "settings": [
-      { "type": "text", "id": "title", "label": "Title", "default": "Shop" },
-      { "type": "link_list", "id": "menu", "label": "Menu", "default": "footer" }
-    ]}
-  ],
-  "presets": [{ "name": "Footer", "blocks": [{ "type": "menu" }, { "type": "menu" }, { "type": "menu" }] }]
+    {
+      "type": "header",
+      "content": "Newsletter Section"
+    },
+    { "type": "text", "id": "newsletter_heading", "label": "Newsletter Heading", "default": "JOIN OUR EXCLUSIVE CLUB" },
+    { "type": "text", "id": "newsletter_text", "label": "Newsletter Text", "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals." },
+    {
+      "type": "header",
+      "content": "Brand Section"
+    },
+    { "type": "textarea", "id": "brand_text", "label": "Brand Description", "default": "Luxury that shines, beauty that lasts. Crafted for unforgettable moments." },
+    {
+      "type": "header",
+      "content": "Footer Menus"
+    },
+    { "type": "link_list", "id": "menu_shop", "label": "Shop Menu", "default": "footer" },
+    { "type": "link_list", "id": "menu_collections", "label": "Collections Menu", "default": "footer" },
+    { "type": "link_list", "id": "menu_customer_care", "label": "Customer Care Menu", "default": "footer" },
+    { "type": "link_list", "id": "menu_account", "label": "Account Menu", "default": "footer" },
+    {
+      "type": "header",
+      "content": "Social Media Links"
+    },
+    { "type": "url", "id": "facebook_url", "label": "Facebook URL" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram URL" },
+    { "type": "url", "id": "pinterest_url", "label": "Pinterest URL" },
+    { "type": "url", "id": "youtube_url", "label": "YouTube URL" },
+    { "type": "url", "id": "tiktok_url", "label": "TikTok URL" }
+  ]
 }
 {% endschema %}
