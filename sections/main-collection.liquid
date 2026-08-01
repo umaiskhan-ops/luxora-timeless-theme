@@ -1,57 +1,65 @@
-<section class="py-12">
-  <div class="container-lux">
-    <header class="text-center">
-      <p class="eyebrow">Our Collections</p>
-      <h1 class="section-title mt-2">{{ collection.title | default: 'All Jewelry' }}</h1>
-      {%- if collection.description != blank -%}
-        <div class="mx-auto mt-4 max-w-2xl text-sm text-ink/60">{{ collection.description }}</div>
-      {%- endif -%}
-    </header>
+<!-- Collection Hero Section -->
+<section style="background: linear-gradient(135deg, #000 0%, #1a1a1a 100%); padding: 100px 0 80px 0; border-bottom: 1px solid #d4af37;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center;">
+    <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 16px 0; text-transform: uppercase;">LUXORA COLLECTION</p>
+    <h1 style="font-size: 3.5rem; font-weight: 700; color: #fff; margin: 0 0 20px 0; letter-spacing: -0.02em; line-height: 1.1;">{{ collection.title | default: 'All Jewelry' }}</h1>
+    {%- if collection.description != blank -%}
+      <div style="font-size: 1.125rem; color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto; line-height: 1.7;">{{ collection.description }}</div>
+    {%- else -%}
+      <p style="font-size: 1.125rem; color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto; line-height: 1.7;">Discover our exquisite collection of timeless jewelry pieces, crafted with passion and precision.</p>
+    {%- endif -%}
+  </div>
+</section>
 
-    <div class="mt-10 grid gap-8 lg:grid-cols-[260px_1fr]">
+<section style="background: #000; padding: 60px 0;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px;">
 
-      {% comment %} Filters {% endcomment %}
-      <aside class="lg:sticky lg:top-24 lg:self-start">
-        <form id="FacetForm" class="space-y-6">
+    <div style="display: grid; grid-template-columns: 260px 1fr; gap: 48px; margin-top: 0;">
+
+      {% comment %} Filters Sidebar {% endcomment %}
+      <aside style="position: sticky; top: 100px; align-self: start; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px; padding: 32px 24px;">
+        <h3 style="font-size: 14px; font-weight: 700; letter-spacing: 0.12em; color: #d4af37; margin: 0 0 24px 0; text-transform: uppercase; padding-bottom: 16px; border-bottom: 1px solid rgba(212,175,55,0.2);">FILTERS</h3>
+        <form id="FacetForm" style="display: flex; flex-direction: column; gap: 24px;">
           {%- if collection.filters.size > 0 -%}
             {%- for filter in collection.filters -%}
-              <div class="border-b border-black/10 pb-5">
-                <p class="mb-3 text-xs font-semibold uppercase tracking-[.2em] text-navy">{{ filter.label }}</p>
+              <div style="padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <p style="margin-bottom: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.8);">{{ filter.label }}</p>
                 {%- case filter.type -%}
                   {%- when 'list' -%}
-                    <ul class="space-y-2">
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
                       {%- for value in filter.values -%}
                         <li>
-                          <label class="flex cursor-pointer items-center gap-2 text-sm text-ink/70 hover:text-gold">
-                            <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} onchange="this.form.submit()" class="accent-[#d4af37]">
-                            {{ value.label }} <span class="text-ink/35">({{ value.count }})</span>
+                          <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.65); cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='#d4af37'" onmouseout="this.style.color='rgba(255,255,255,0.65)'">
+                            <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} onchange="this.form.submit()" style="accent-color: #d4af37;">
+                            {{ value.label }} <span style="color: rgba(255,255,255,0.35);">({{ value.count }})</span>
                           </label>
                         </li>
                       {%- endfor -%}
                     </ul>
                   {%- when 'price_range' -%}
-                    <div class="flex items-center gap-2">
-                      <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" placeholder="Min" class="w-full border border-black/15 px-3 py-2 text-sm">
-                      <span class="text-ink/40">–</span>
-                      <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" placeholder="Max" class="w-full border border-black/15 px-3 py-2 text-sm">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" placeholder="Min" style="width: 100%; border: 1px solid rgba(212,175,55,0.3); background: #000; color: #fff; padding: 10px 12px; font-size: 13px; border-radius: 6px; outline: none;" onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
+                      <span style="color: rgba(255,255,255,0.4);">–</span>
+                      <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" placeholder="Max" style="width: 100%; border: 1px solid rgba(212,175,55,0.3); background: #000; color: #fff; padding: 10px 12px; font-size: 13px; border-radius: 6px; outline: none;" onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
                     </div>
-                    <button type="submit" class="btn btn-dark mt-3 w-full">Apply</button>
+                    <button type="submit" style="margin-top: 12px; width: 100%; padding: 12px; background: #d4af37; color: #000; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; transition: all 0.3s;" onmouseover="this.style.background='#e8cd7a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#d4af37'; this.style.transform='translateY(0)'">Apply</button>
                 {%- endcase -%}
               </div>
             {%- endfor -%}
           {%- else -%}
-            <p class="text-sm text-ink/50">Add filters in <em>Search &amp; Discovery</em> to enable filtering by price, colour and size.</p>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6;">Filters will appear here once configured in Shopify Admin.</p>
           {%- endif -%}
         </form>
       </aside>
 
       <div>
-        <div class="mb-6 flex items-center justify-between">
-          <p class="text-xs uppercase tracking-[.18em] text-ink/50">{{ collection.products_count }} products</p>
-          <form method="get" class="flex items-center gap-2">
+        <!-- Sort & Count Bar -->
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; padding: 20px 24px; background: rgba(212,175,55,0.03); border: 1px solid rgba(212,175,55,0.2); border-radius: 12px;">
+          <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); font-weight: 600;">{{ collection.products_count }} Products</p>
+          <form method="get" style="display: flex; align-items: center; gap: 12px;">
             {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-            <label for="SortBy" class="text-xs uppercase tracking-[.18em] text-ink/50">Sort</label>
-            <select id="SortBy" name="sort_by" onchange="this.form.submit()" class="border border-black/15 px-3 py-2 text-sm outline-none focus:border-gold">
+            <label for="SortBy" style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.6); font-weight: 600;">Sort By</label>
+            <select id="SortBy" name="sort_by" onchange="this.form.submit()" style="border: 1px solid rgba(212,175,55,0.3); background: #000; color: #fff; padding: 10px 16px; font-size: 13px; border-radius: 6px; outline: none; cursor: pointer;" onfocus="this.style.borderColor='#d4af37'" onblur="this.style.borderColor='rgba(212,175,55,0.3)'">
               {%- for option in collection.sort_options -%}
                 <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option>
               {%- endfor -%}
@@ -60,23 +68,38 @@
         </div>
 
         {%- paginate collection.products by section.settings.products_per_page -%}
-          <div class="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
             {%- for product in collection.products -%}
               {% render 'product-card', product: product %}
             {%- else -%}
-              <p class="col-span-full py-16 text-center text-ink/50">No products found.</p>
+              <div style="grid-column: 1 / -1; padding: 80px 40px; text-align: center;">
+                <div style="width: 120px; height: 120px; background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px auto;">
+                  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                  </svg>
+                </div>
+                <h3 style="font-size: 1.75rem; font-weight: 700; color: #fff; margin: 0 0 12px 0;">No Products Found</h3>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.6); margin: 0 0 32px 0;">Try adjusting your filters or browse our other collections.</p>
+                <a href="/collections/all" style="display: inline-block; padding: 14px 32px; background: #d4af37; color: #000; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-decoration: none; border-radius: 8px; text-transform: uppercase; transition: all 0.3s;" onmouseover="this.style.background='#e8cd7a'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#d4af37'; this.style.transform='translateY(0)'">View All Products</a>
+              </div>
             {%- endfor -%}
           </div>
 
           {%- if paginate.pages > 1 -%}
-            <nav class="mt-12 flex justify-center gap-2">
+            <nav style="margin-top: 60px; display: flex; justify-content: center; gap: 8px;">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}" style="padding: 12px 20px; border: 1px solid rgba(212,175,55,0.3); background: transparent; color: #d4af37; font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.background='rgba(212,175,55,0.1)'" onmouseout="this.style.borderColor='rgba(212,175,55,0.3)'; this.style.background='transparent'">← Previous</a>
+              {%- endif -%}
               {%- for part in paginate.parts -%}
                 {%- if part.is_link -%}
-                  <a href="{{ part.url }}" class="border border-black/15 px-4 py-2 text-sm hover:border-gold hover:text-gold">{{ part.title }}</a>
+                  <a href="{{ part.url }}" style="padding: 12px 18px; border: 1px solid rgba(212,175,55,0.3); background: transparent; color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.color='#d4af37'" onmouseout="this.style.borderColor='rgba(212,175,55,0.3)'; this.style.color='rgba(255,255,255,0.7)'">{{ part.title }}</a>
                 {%- else -%}
-                  <span class="border border-gold bg-navy px-4 py-2 text-sm text-white">{{ part.title }}</span>
+                  <span style="padding: 12px 18px; border: 1px solid #d4af37; background: #d4af37; color: #000; font-size: 13px; font-weight: 700; border-radius: 6px;">{{ part.title }}</span>
                 {%- endif -%}
               {%- endfor -%}
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" style="padding: 12px 20px; border: 1px solid rgba(212,175,55,0.3); background: transparent; color: #d4af37; font-size: 13px; font-weight: 600; text-decoration: none; border-radius: 6px; transition: all 0.3s;" onmouseover="this.style.borderColor='#d4af37'; this.style.background='rgba(212,175,55,0.1)'" onmouseout="this.style.borderColor='rgba(212,175,55,0.3)'; this.style.background='transparent'">Next →</a>
+              {%- endif -%}
             </nav>
           {%- endif -%}
         {%- endpaginate -%}
@@ -84,6 +107,35 @@
     </div>
   </div>
 </section>
+
+<style>
+@media (max-width: 1024px) {
+  section > div > div {
+    grid-template-columns: 1fr !important;
+  }
+  
+  aside {
+    position: relative !important;
+    top: 0 !important;
+  }
+  
+  section > div > div > div > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 24px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  section > div > div > div > div {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+</style>
 
 {% schema %}
 {
