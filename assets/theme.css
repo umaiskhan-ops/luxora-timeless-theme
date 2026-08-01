@@ -21,7 +21,7 @@
 }
 
 html{scroll-behavior:smooth;}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--luxora-text);}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--luxora-text);overflow-x:hidden;max-width:100vw;}
 h1,h2,h3,h4,.font-display{font-family:'Playfair Display',Georgia,serif;}
 
 /* ---------- Typography helpers ---------- */
@@ -122,4 +122,29 @@ h1,h2,h3,h4,.font-display{font-family:'Playfair Display',Georgia,serif;}
   .hero{min-height:70vh;text-align:left;}
   .btn{padding:.75rem 1.4rem;font-size:.72rem;}
   .drawer__panel{width:100%;}
+}
+
+
+/* ---------- Mobile Overflow Fix ---------- */
+.container-lux {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  body, html {
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
+  }
+  
+  * {
+    max-width: 100%;
+  }
+  
+  .container-lux {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
