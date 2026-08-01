@@ -1,4 +1,8 @@
 {
-  "sections": { "main": { "type": "main-faq", "settings": {} } },
-  "order": ["main"]
+  "sections": {
+    "page_faq": {
+      "type": "page-faq"
+    }
+  },
+  "order": ["page_faq"]
 }

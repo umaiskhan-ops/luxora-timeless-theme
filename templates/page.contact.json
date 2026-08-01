@@ -1,4 +1,8 @@
 {
-  "sections": { "main": { "type": "main-contact", "settings": {} } },
-  "order": ["main"]
+  "sections": {
+    "page_contact": {
+      "type": "page-contact"
+    }
+  },
+  "order": ["page_contact"]
 }

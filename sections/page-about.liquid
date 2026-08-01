@@ -1,0 +1,128 @@
+<!-- About Us Hero Section -->
+<section style="background: linear-gradient(135deg, #000 0%, #1a1a1a 100%); padding: 80px 0; border-bottom: 1px solid #d4af37;">
+  <div class="container-lux" style="max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center;">
+    <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 16px 0; text-transform: uppercase;">{{ section.settings.eyebrow | default: "OUR STORY" }}</p>
+    <h1 style="font-size: 3.5rem; font-weight: 700; color: #fff; margin: 0 0 24px 0; letter-spacing: -0.02em; line-height: 1.1;">{{ section.settings.heading | default: "About LUXORA Jewelry" }}</h1>
+    <p style="font-size: 1.125rem; color: rgba(255,255,255,0.7); max-width: 800px; margin: 0 auto; line-height: 1.7;">{{ section.settings.description | default: "Crafting timeless elegance and unforgettable moments through exceptional jewelry that tells your unique story." }}</p>
+  </div>
+</section>
+
+<!-- Story Section -->
+<section style="background: #000; padding: 100px 0;">
+  <div class="container-lux" style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+      
+      <!-- Left: Image -->
+      <div style="position: relative;">
+        {%- if section.settings.story_image -%}
+          <img src="{{ section.settings.story_image | image_url: width: 600 }}" alt="Our Story" width="600" height="700" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; border: 2px solid #d4af37;">
+        {%- else -%}
+          <div style="width: 100%; aspect-ratio: 6/7; background: linear-gradient(135deg, #1a1a1a, #0a0a0a); border-radius: 12px; border: 2px solid #d4af37;"></div>
+        {%- endif -%}
+        <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+          <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2">
+            <path d="M6 3h12l3 6-9 12L3 9z"/><path d="M3 9h18"/>
+          </svg>
+        </div>
+      </div>
+      
+      <!-- Right: Content -->
+      <div>
+        <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 16px 0; text-transform: uppercase;">{{ section.settings.story_eyebrow | default: "SINCE 1995" }}</p>
+        <h2 style="font-size: 2.5rem; font-weight: 700; color: #fff; margin: 0 0 24px 0; line-height: 1.2;">{{ section.settings.story_heading | default: "A Legacy of Excellence" }}</h2>
+        <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin: 0 0 20px 0; line-height: 1.8;">{{ section.settings.story_text_1 | default: "For nearly three decades, LUXORA has been synonymous with luxury, craftsmanship, and timeless beauty. What started as a small family workshop has blossomed into a globally recognized brand." }}</p>
+        <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin: 0 0 20px 0; line-height: 1.8;">{{ section.settings.story_text_2 | default: "Every piece we create is a testament to our commitment to excellence. Our master artisans pour their passion and expertise into each design, ensuring that your jewelry isn't just an accessory—it's a cherished heirloom." }}</p>
+        <p style="font-size: 1rem; color: rgba(255,255,255,0.7); margin: 0; line-height: 1.8;">{{ section.settings.story_text_3 | default: "We source only the finest materials, from ethically mined diamonds to sustainably sourced gold, because we believe true luxury comes from responsibility and integrity." }}</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Values Section -->
+<section style="background: #0a0a0a; padding: 100px 0; border-top: 1px solid #d4af37;">
+  <div class="container-lux" style="max-width: 1200px; margin: 0 auto; padding: 0 40px; text-align: center;">
+    <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.15em; color: #d4af37; margin: 0 0 16px 0; text-transform: uppercase;">OUR VALUES</p>
+    <h2 style="font-size: 2.5rem; font-weight: 700; color: #fff; margin: 0 0 60px 0;">What We Stand For</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px;">
+      
+      <!-- Value 1 -->
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #d4af37; margin: 0 0 12px 0;">Excellence</h3>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 0;">Every piece is crafted with meticulous attention to detail and uncompromising quality standards.</p>
+      </div>
+      
+      <!-- Value 2 -->
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #d4af37; margin: 0 0 12px 0;">Passion</h3>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 0;">Our love for fine jewelry drives us to create pieces that capture hearts and celebrate life's precious moments.</p>
+      </div>
+      
+      <!-- Value 3 -->
+      <div style="text-align: center;">
+        <div style="width: 80px; height: 80px; background: rgba(212,175,55,0.1); border: 2px solid #d4af37; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px auto;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #d4af37; margin: 0 0 12px 0;">Timeless</h3>
+        <p style="font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin: 0;">We design jewelry that transcends trends, creating heirlooms to be treasured for generations.</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+  section > div > div {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  h2 {
+    font-size: 2rem !important;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "About Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow Text", "default": "OUR STORY" },
+    { "type": "text", "id": "heading", "label": "Main Heading", "default": "About LUXORA Jewelry" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "Crafting timeless elegance and unforgettable moments through exceptional jewelry that tells your unique story." },
+    {
+      "type": "header",
+      "content": "Story Section"
+    },
+    { "type": "image_picker", "id": "story_image", "label": "Story Image" },
+    { "type": "text", "id": "story_eyebrow", "label": "Story Eyebrow", "default": "SINCE 1995" },
+    { "type": "text", "id": "story_heading", "label": "Story Heading", "default": "A Legacy of Excellence" },
+    { "type": "textarea", "id": "story_text_1", "label": "Paragraph 1", "default": "For nearly three decades, LUXORA has been synonymous with luxury, craftsmanship, and timeless beauty." },
+    { "type": "textarea", "id": "story_text_2", "label": "Paragraph 2", "default": "Every piece we create is a testament to our commitment to excellence." },
+    { "type": "textarea", "id": "story_text_3", "label": "Paragraph 3", "default": "We source only the finest materials, from ethically mined diamonds to sustainably sourced gold." }
+  ],
+  "presets": [{ "name": "About Page" }]
+}
+{% endschema %}
