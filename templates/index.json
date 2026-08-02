@@ -104,7 +104,7 @@
         "collection": "",
         "products_to_show": 5,
         "button_label": "View All Collections",
-        "button_link": "/collections/all"
+        "button_link": "/collections"
       }
     },
     "promo": {
