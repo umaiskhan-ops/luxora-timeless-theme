@@ -22,7 +22,46 @@
     "enable_cart_upsell": true,
     "currency_code_enabled": false,
     "swatch_option_name": "Color",
-    "swatch_map": "Gold:#d4af37\nRose Gold:#b76e79\nWhite Gold:#e8e8e8\nPlatinum:#dcdcdc\nSilver:#c0c0c0"
+    "swatch_map": "Gold:#d4af37\nRose Gold:#b76e79\nWhite Gold:#e8e8e8\nPlatinum:#dcdcdc\nSilver:#c0c0c0",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "text": "Free express shipping worldwide on all orders over $199"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "newsletter_heading": "JOIN OUR EXCLUSIVE CLUB",
+          "newsletter_text": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.",
+          "brand_text": "Luxury that shines, beauty that lasts. Crafted for unforgettable moments.",
+          "menu_shop": "footer",
+          "menu_collections": "footer",
+          "menu_customer_care": "footer",
+          "menu_account": "footer",
+          "facebook_url": "https://facebook.com/",
+          "instagram_url": "https://instagram.com/",
+          "twitter_url": "https://twitter.com/",
+          "pinterest_url": "https://pinterest.com/",
+          "youtube_url": "https://youtube.com/",
+          "tiktok_url": "https://tiktok.com/"
+        }
+      },
+      "cart-drawer": {
+        "type": "cart-drawer",
+        "settings": {
+          "show_shipping_bar": true
+        }
+      }
+    },
+    "content_for_index": []
   },
   "presets": {}
 }
