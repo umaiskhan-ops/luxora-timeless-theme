@@ -48,7 +48,7 @@
         "button_label": "Shop Collection",
         "button_link": "/collections/all",
         "button_2_label": "Explore More",
-        "button_2_link": "/collections",
+        "button_2_link": "/pages/about-us",
         "video_link": "https://www.youtube.com"
       }
     },
