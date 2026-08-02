@@ -48,7 +48,7 @@
         "button_label": "Shop Collection",
         "button_link": "/collections/all",
         "button_2_label": "Explore More",
-        "button_2_link": "/pages/about",
+        "button_2_link": "/pages/about-us",
         "video_link": "https://www.youtube.com"
       }
     },
@@ -104,7 +104,7 @@
         "collection": "",
         "products_to_show": 5,
         "button_label": "View All Collections",
-        "button_link": "/collections/all"
+        "button_link": "/collections"
       }
     },
     "promo": {
@@ -118,7 +118,7 @@
             "heading": "JUST FOR YOU",
             "text": "Explore our latest designs",
             "button_label": "Shop Now",
-            "button_link": "/collections/all"
+            "button_link": "shopify://collections/new-arrivals"
           }
         },
         "p2": {
@@ -129,7 +129,7 @@
             "heading": "CRAFTED TO PERFECTION",
             "text": "Detail that defines beauty",
             "button_label": "Discover More",
-            "button_link": "/pages/about"
+            "button_link": "/collections/all"
           }
         },
         "p3": {
@@ -140,7 +140,7 @@
             "heading": "UP TO 30% OFF",
             "text": "On selected items only",
             "button_label": "Shop Sale",
-            "button_link": "/collections/all"
+            "button_link": "/collections/sale"
           }
         }
       },
