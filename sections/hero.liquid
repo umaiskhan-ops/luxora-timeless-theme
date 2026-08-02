@@ -26,10 +26,10 @@
 
       <div class="mt-8 flex flex-wrap gap-3">
         {%- if section.settings.button_label != blank -%}
-          <a href="{{ section.settings.button_link }}" class="btn btn-gold">{{ section.settings.button_label }}</a>
+          <a href="{{ section.settings.button_link | default: '/collections/all' }}" class="btn btn-gold">{{ section.settings.button_label }}</a>
         {%- endif -%}
         {%- if section.settings.button_2_label != blank -%}
-          <a href="{{ section.settings.button_2_link }}" class="btn btn-outline">{{ section.settings.button_2_label }}</a>
+          <a href="{{ section.settings.button_2_link | default: '/collections' }}" class="btn btn-outline">{{ section.settings.button_2_label }}</a>
         {%- endif -%}
       </div>
 
