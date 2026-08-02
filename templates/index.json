@@ -118,7 +118,7 @@
             "heading": "JUST FOR YOU",
             "text": "Explore our latest designs",
             "button_label": "Shop Now",
-            "button_link": "/collections/all"
+            "button_link": "shopify://collections/new-arrivals"
           }
         },
         "p2": {
